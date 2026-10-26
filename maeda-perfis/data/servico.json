@@ -1,0 +1,209 @@
+{
+  "key": "servico",
+  "version": "0.1.0",
+  "title": "Serviço e atuação ministerial",
+  "description": "Reconheça atividades em que gostaria de contribuir e planeje experiências de serviço com acompanhamento.",
+  "icon": "heart",
+  "color": "#d3688e",
+  "pilot": true,
+  "reference": "Questionário autoral de interesses de serviço. Não determina dons espirituais, chamado ou maturidade espiritual.",
+  "minutes": "6–8",
+  "instructions": "Indique seu interesse atual pelas atividades de serviço abaixo. Considere sua disponibilidade e o que gostaria de conhecer melhor. O resultado apoia uma conversa com a liderança e a experimentação acompanhada.",
+  "scale": {
+    "1": "Nenhum interesse",
+    "2": "Pouco interesse",
+    "3": "Interesse moderado",
+    "4": "Bastante interesse",
+    "5": "Muito interesse"
+  },
+  "dimensions": [
+    {
+      "key": "acolhimento",
+      "label": "Acolhimento e relacionamento",
+      "short_label": "Acolher",
+      "description": "Interesse declarado por receber pessoas, facilitar sua integração e ouvir necessidades.",
+      "action": "Converse com a liderança sobre acompanhar uma equipe de acolhimento em uma atividade, com orientação e limites claros."
+    },
+    {
+      "key": "ensino",
+      "label": "Ensino e formação",
+      "short_label": "Ensinar",
+      "description": "Interesse declarado por preparar conteúdos, explicar temas e acompanhar a aprendizagem.",
+      "action": "Prepare uma breve contribuição para um estudo com a supervisão de alguém responsável e peça retorno sobre a experiência."
+    },
+    {
+      "key": "organizacao",
+      "label": "Organização de atividades",
+      "short_label": "Organizar",
+      "description": "Interesse declarado por planejar etapas, acompanhar informações e apoiar a logística.",
+      "action": "Ajude a organizar uma atividade pequena, com responsáveis e prazos combinados, e avalie sua experiência depois."
+    },
+    {
+      "key": "comunicacao",
+      "label": "Comunicação e expressão",
+      "short_label": "Comunicar",
+      "description": "Interesse declarado por comunicar atividades e contribuir com textos, imagens e expressão artística.",
+      "action": "Escolha uma entrega de comunicação compatível com sua experiência e peça orientação à equipe responsável."
+    },
+    {
+      "key": "apoio",
+      "label": "Apoio prático e bastidores",
+      "short_label": "Apoiar",
+      "description": "Interesse declarado por preparar espaços, cuidar de materiais e apoiar necessidades concretas.",
+      "action": "Acompanhe uma equipe de apoio em uma atividade e conheça as orientações de segurança e os procedimentos locais."
+    },
+    {
+      "key": "coordenacao",
+      "label": "Coordenação de iniciativas",
+      "short_label": "Coordenar",
+      "description": "Interesse declarado por articular pessoas e acompanhar iniciativas de serviço.",
+      "action": "Converse sobre coordenar uma tarefa pequena com supervisão, considerando sua disponibilidade real e as necessidades da comunidade."
+    }
+  ],
+  "questions": [
+    {
+      "id": "ser_01",
+      "prompt": "Receber pessoas que estão chegando a um encontro.",
+      "dimension": "acolhimento",
+      "reverse": false
+    },
+    {
+      "id": "ser_02",
+      "prompt": "Preparar um conteúdo para compartilhar com um grupo.",
+      "dimension": "ensino",
+      "reverse": false
+    },
+    {
+      "id": "ser_03",
+      "prompt": "Organizar as etapas de uma atividade comunitária.",
+      "dimension": "organizacao",
+      "reverse": false
+    },
+    {
+      "id": "ser_04",
+      "prompt": "Criar uma mensagem para divulgar uma atividade.",
+      "dimension": "comunicacao",
+      "reverse": false
+    },
+    {
+      "id": "ser_05",
+      "prompt": "Preparar um espaço antes de um encontro.",
+      "dimension": "apoio",
+      "reverse": false
+    },
+    {
+      "id": "ser_06",
+      "prompt": "Ajudar um grupo a definir o objetivo de uma ação de serviço.",
+      "dimension": "coordenacao",
+      "reverse": false
+    },
+    {
+      "id": "ser_07",
+      "prompt": "Ajudar alguém a conhecer as atividades de uma comunidade.",
+      "dimension": "acolhimento",
+      "reverse": false
+    },
+    {
+      "id": "ser_08",
+      "prompt": "Explicar um tema bíblico ou formativo com preparo prévio.",
+      "dimension": "ensino",
+      "reverse": false
+    },
+    {
+      "id": "ser_09",
+      "prompt": "Acompanhar uma lista de materiais e responsáveis.",
+      "dimension": "organizacao",
+      "reverse": false
+    },
+    {
+      "id": "ser_10",
+      "prompt": "Contribuir com textos, imagens ou apresentações.",
+      "dimension": "comunicacao",
+      "reverse": false
+    },
+    {
+      "id": "ser_11",
+      "prompt": "Ajudar com materiais e equipamentos conforme orientações.",
+      "dimension": "apoio",
+      "reverse": false
+    },
+    {
+      "id": "ser_12",
+      "prompt": "Articular pessoas para realizar uma atividade em conjunto.",
+      "dimension": "coordenacao",
+      "reverse": false
+    },
+    {
+      "id": "ser_13",
+      "prompt": "Ouvir uma pessoa para compreender de que apoio ela precisa.",
+      "dimension": "acolhimento",
+      "reverse": false
+    },
+    {
+      "id": "ser_14",
+      "prompt": "Ajudar uma pessoa a compreender um conteúdo de estudo.",
+      "dimension": "ensino",
+      "reverse": false
+    },
+    {
+      "id": "ser_15",
+      "prompt": "Ajudar a preparar a programação de um encontro.",
+      "dimension": "organizacao",
+      "reverse": false
+    },
+    {
+      "id": "ser_16",
+      "prompt": "Ajudar a comunicar orientações a um grupo.",
+      "dimension": "comunicacao",
+      "reverse": false
+    },
+    {
+      "id": "ser_17",
+      "prompt": "Colaborar com tarefas práticas durante uma ação de serviço.",
+      "dimension": "apoio",
+      "reverse": false
+    },
+    {
+      "id": "ser_18",
+      "prompt": "Acompanhar responsáveis e prazos de uma iniciativa.",
+      "dimension": "coordenacao",
+      "reverse": false
+    },
+    {
+      "id": "ser_19",
+      "prompt": "Facilitar a integração de alguém em um pequeno grupo.",
+      "dimension": "acolhimento",
+      "reverse": false
+    },
+    {
+      "id": "ser_20",
+      "prompt": "Participar da organização de uma atividade de formação.",
+      "dimension": "ensino",
+      "reverse": false
+    },
+    {
+      "id": "ser_21",
+      "prompt": "Conferir informações para que uma atividade aconteça como combinado.",
+      "dimension": "organizacao",
+      "reverse": false
+    },
+    {
+      "id": "ser_22",
+      "prompt": "Participar de uma expressão artística em uma atividade comunitária.",
+      "dimension": "comunicacao",
+      "reverse": false
+    },
+    {
+      "id": "ser_23",
+      "prompt": "Apoiar a organização do espaço depois de uma atividade.",
+      "dimension": "apoio",
+      "reverse": false
+    },
+    {
+      "id": "ser_24",
+      "prompt": "Conversar com a equipe sobre aprendizados após uma atividade.",
+      "dimension": "coordenacao",
+      "reverse": false
+    }
+  ]
+}

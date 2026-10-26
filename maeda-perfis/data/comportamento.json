@@ -1,0 +1,195 @@
+{
+  "key": "comportamento",
+  "version": "0.1.0",
+  "title": "Comportamento e comunicação",
+  "description": "Explore como você se posiciona, se comunica, acompanha mudanças e organiza suas entregas.",
+  "icon": "compass",
+  "color": "#7462df",
+  "pilot": true,
+  "reference": "Referência conceitual DISC. Questionário autoral piloto; não é uma aplicação oficial de Everything DiSC.",
+  "minutes": "6–8",
+  "instructions": "Pense nas situações do seu cotidiano e indique quanto cada afirmação descreve você hoje. Não há resposta certa nem um perfil ideal.",
+  "scale": {
+    "1": "Discordo totalmente",
+    "2": "Discordo em parte",
+    "3": "Nem concordo nem discordo",
+    "4": "Concordo em parte",
+    "5": "Concordo totalmente"
+  },
+  "dimensions": [
+    {
+      "key": "direcao",
+      "label": "Direção e iniciativa",
+      "short_label": "Iniciativa",
+      "description": "Suas respostas sobre tomar a frente, expressar decisões e buscar resultados.",
+      "action": "Escolha uma decisão da semana e combine com as pessoas envolvidas o resultado esperado e o espaço de participação de cada uma."
+    },
+    {
+      "key": "influencia",
+      "label": "Expressão e conexão",
+      "short_label": "Conexão",
+      "description": "Suas respostas sobre compartilhar ideias, iniciar conversas e mobilizar pessoas.",
+      "action": "Na próxima conversa de grupo, apresente uma ideia de forma breve e reserve espaço para ouvir quem ainda não participou."
+    },
+    {
+      "key": "constancia",
+      "label": "Constância e apoio",
+      "short_label": "Constância",
+      "description": "Suas respostas sobre acompanhar processos, sustentar acordos e apoiar o ritmo do grupo.",
+      "action": "Converse sobre uma mudança recente e identifique quais acordos ou informações ajudariam você a participar melhor."
+    },
+    {
+      "key": "criterio",
+      "label": "Critério e precisão",
+      "short_label": "Critério",
+      "description": "Suas respostas sobre conferir informações, observar padrões e cuidar dos detalhes.",
+      "action": "Escolha uma entrega e defina o que precisa ser conferido, com um limite de tempo para a revisão."
+    }
+  ],
+  "questions": [
+    {
+      "id": "com_01",
+      "prompt": "Tomo a iniciativa quando uma atividade precisa começar.",
+      "dimension": "direcao",
+      "reverse": false
+    },
+    {
+      "id": "com_02",
+      "prompt": "Inicio conversas com pessoas que ainda conheço pouco.",
+      "dimension": "influencia",
+      "reverse": false
+    },
+    {
+      "id": "com_03",
+      "prompt": "Gosto de manter um ritmo de trabalho previsível.",
+      "dimension": "constancia",
+      "reverse": false
+    },
+    {
+      "id": "com_04",
+      "prompt": "Confiro informações antes de utilizá-las em uma decisão.",
+      "dimension": "criterio",
+      "reverse": false
+    },
+    {
+      "id": "com_05",
+      "prompt": "Expresso minha posição mesmo quando há opiniões diferentes.",
+      "dimension": "direcao",
+      "reverse": false
+    },
+    {
+      "id": "com_06",
+      "prompt": "Demonstro entusiasmo ao compartilhar uma ideia.",
+      "dimension": "influencia",
+      "reverse": false
+    },
+    {
+      "id": "com_07",
+      "prompt": "Procuro acompanhar uma atividade até sua conclusão.",
+      "dimension": "constancia",
+      "reverse": false
+    },
+    {
+      "id": "com_08",
+      "prompt": "Procuro compreender os critérios de qualidade de uma tarefa.",
+      "dimension": "criterio",
+      "reverse": false
+    },
+    {
+      "id": "com_09",
+      "prompt": "Sinto-me à vontade para decidir entre alternativas com tempo limitado.",
+      "dimension": "direcao",
+      "reverse": false
+    },
+    {
+      "id": "com_10",
+      "prompt": "Gosto de apresentar propostas para um grupo.",
+      "dimension": "influencia",
+      "reverse": false
+    },
+    {
+      "id": "com_11",
+      "prompt": "Reservo tempo para apoiar alguém que precisa de ajuda.",
+      "dimension": "constancia",
+      "reverse": false
+    },
+    {
+      "id": "com_12",
+      "prompt": "Reviso detalhes importantes antes de entregar meu trabalho.",
+      "dimension": "criterio",
+      "reverse": false
+    },
+    {
+      "id": "com_13",
+      "prompt": "Gosto de assumir a responsabilidade por um resultado.",
+      "dimension": "direcao",
+      "reverse": false
+    },
+    {
+      "id": "com_14",
+      "prompt": "Procuro envolver outras pessoas nas atividades que realizo.",
+      "dimension": "influencia",
+      "reverse": false
+    },
+    {
+      "id": "com_15",
+      "prompt": "Valorizo acordos que dão continuidade ao trabalho do grupo.",
+      "dimension": "constancia",
+      "reverse": false
+    },
+    {
+      "id": "com_16",
+      "prompt": "Gosto de organizar informações de forma consistente.",
+      "dimension": "criterio",
+      "reverse": false
+    },
+    {
+      "id": "com_17",
+      "prompt": "Busco encaminhar uma decisão quando um grupo está parado.",
+      "dimension": "direcao",
+      "reverse": false
+    },
+    {
+      "id": "com_18",
+      "prompt": "Costumo expressar verbalmente o que estou pensando.",
+      "dimension": "influencia",
+      "reverse": false
+    },
+    {
+      "id": "com_19",
+      "prompt": "Prefiro conhecer os próximos passos antes de mudar uma rotina.",
+      "dimension": "constancia",
+      "reverse": false
+    },
+    {
+      "id": "com_20",
+      "prompt": "Peço esclarecimentos quando uma orientação está pouco definida.",
+      "dimension": "criterio",
+      "reverse": false
+    },
+    {
+      "id": "com_21",
+      "prompt": "Prefiro que outras pessoas decidam os próximos passos por mim.",
+      "dimension": "direcao",
+      "reverse": true
+    },
+    {
+      "id": "com_22",
+      "prompt": "Evito apresentar minhas ideias mesmo quando tenho oportunidade.",
+      "dimension": "influencia",
+      "reverse": true
+    },
+    {
+      "id": "com_23",
+      "prompt": "Mudo minha forma de trabalhar com frequência, mesmo quando a rotina atual funciona.",
+      "dimension": "constancia",
+      "reverse": true
+    },
+    {
+      "id": "com_24",
+      "prompt": "Costumo pular a conferência dos detalhes para encerrar logo uma tarefa.",
+      "dimension": "criterio",
+      "reverse": true
+    }
+  ]
+}

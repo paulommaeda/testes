@@ -1,0 +1,208 @@
+{
+  "key": "lideranca",
+  "version": "0.1.0",
+  "title": "Liderança e colaboração",
+  "description": "Reflita sobre suas experiências ao coordenar atividades, construir acordos e aprender com uma equipe.",
+  "icon": "users",
+  "color": "#188f8c",
+  "pilot": true,
+  "reference": "Referências conceituais DISC e PEAKS da RCI. Instrumento autoral piloto, sem vínculo com os produtos oficiais.",
+  "minutes": "6–8",
+  "instructions": "Pense nas situações do seu cotidiano e indique quanto cada afirmação descreve você hoje. Não há resposta certa nem um perfil ideal.",
+  "scale": {
+    "1": "Discordo totalmente",
+    "2": "Discordo em parte",
+    "3": "Nem concordo nem discordo",
+    "4": "Concordo em parte",
+    "5": "Concordo totalmente"
+  },
+  "dimensions": [
+    {
+      "key": "direcionamento",
+      "label": "Direcionamento de atividades",
+      "short_label": "Direção",
+      "description": "Suas respostas sobre explicar objetivos, combinar prioridades e acompanhar o trabalho.",
+      "action": "Converse com sua equipe e registre um objetivo, um responsável e um prazo para uma atividade pequena."
+    },
+    {
+      "key": "participacao",
+      "label": "Participação e escuta",
+      "short_label": "Escuta",
+      "description": "Suas respostas sobre ouvir diferentes contribuições e criar espaço para participação.",
+      "action": "Na próxima reunião, convide uma pessoa que falou pouco a compartilhar sua perspectiva, sem obrigá-la a responder."
+    },
+    {
+      "key": "acordos",
+      "label": "Acordos e feedback",
+      "short_label": "Acordos",
+      "description": "Suas respostas sobre tratar divergências, reconhecer contribuições e conversar sobre ajustes.",
+      "action": "Prepare um feedback usando um fato observado, o efeito da situação e uma pergunta para construir o próximo passo."
+    },
+    {
+      "key": "aprendizagem",
+      "label": "Aprendizagem e adaptação",
+      "short_label": "Aprender",
+      "description": "Suas respostas sobre rever estratégias, experimentar soluções e aprender com o grupo.",
+      "action": "Escolha uma prática da equipe para experimentar de outro modo e combine como avaliar a experiência."
+    },
+    {
+      "key": "sustentacao",
+      "label": "Sustentação de compromissos",
+      "short_label": "Compromissos",
+      "description": "Suas respostas sobre comunicar limites, reorganizar demandas e dar continuidade a compromissos.",
+      "action": "Revise seus compromissos atuais e comunique cedo um limite de capacidade ou uma necessidade de renegociação."
+    }
+  ],
+  "questions": [
+    {
+      "id": "lid_01",
+      "prompt": "Explico qual resultado esperamos antes de distribuir uma atividade.",
+      "dimension": "direcionamento",
+      "reverse": false
+    },
+    {
+      "id": "lid_02",
+      "prompt": "Peço a opinião de pessoas com experiências diferentes da minha.",
+      "dimension": "participacao",
+      "reverse": false
+    },
+    {
+      "id": "lid_03",
+      "prompt": "Converso sobre uma divergência com as pessoas diretamente envolvidas.",
+      "dimension": "acordos",
+      "reverse": false
+    },
+    {
+      "id": "lid_04",
+      "prompt": "Reviso uma estratégia quando os resultados mostram que ela precisa mudar.",
+      "dimension": "aprendizagem",
+      "reverse": false
+    },
+    {
+      "id": "lid_05",
+      "prompt": "Comunico com antecedência quando um compromisso precisa ser renegociado.",
+      "dimension": "sustentacao",
+      "reverse": false
+    },
+    {
+      "id": "lid_06",
+      "prompt": "Ajudo o grupo a escolher prioridades quando há muitas demandas.",
+      "dimension": "direcionamento",
+      "reverse": false
+    },
+    {
+      "id": "lid_07",
+      "prompt": "Ouço uma proposta até compreender seu sentido.",
+      "dimension": "participacao",
+      "reverse": false
+    },
+    {
+      "id": "lid_08",
+      "prompt": "Ao dar feedback, descrevo situações concretas.",
+      "dimension": "acordos",
+      "reverse": false
+    },
+    {
+      "id": "lid_09",
+      "prompt": "Peço retorno sobre a forma como conduzo uma atividade.",
+      "dimension": "aprendizagem",
+      "reverse": false
+    },
+    {
+      "id": "lid_10",
+      "prompt": "Quando surgem imprevistos, procuro reorganizar as prioridades com o grupo.",
+      "dimension": "sustentacao",
+      "reverse": false
+    },
+    {
+      "id": "lid_11",
+      "prompt": "Combino como vamos acompanhar o andamento de uma tarefa.",
+      "dimension": "direcionamento",
+      "reverse": false
+    },
+    {
+      "id": "lid_12",
+      "prompt": "Procuro saber se alguém precisa de apoio para participar.",
+      "dimension": "participacao",
+      "reverse": false
+    },
+    {
+      "id": "lid_13",
+      "prompt": "Reconheço contribuições específicas de outras pessoas.",
+      "dimension": "acordos",
+      "reverse": false
+    },
+    {
+      "id": "lid_14",
+      "prompt": "Experimento sugestões da equipe em situações apropriadas.",
+      "dimension": "aprendizagem",
+      "reverse": false
+    },
+    {
+      "id": "lid_15",
+      "prompt": "Peço apoio quando as demandas ultrapassam minha capacidade de entrega.",
+      "dimension": "sustentacao",
+      "reverse": false
+    },
+    {
+      "id": "lid_16",
+      "prompt": "Procuro esclarecer o que cada pessoa pode decidir.",
+      "dimension": "direcionamento",
+      "reverse": false
+    },
+    {
+      "id": "lid_17",
+      "prompt": "Abro espaço para perguntas sobre as decisões do grupo.",
+      "dimension": "participacao",
+      "reverse": false
+    },
+    {
+      "id": "lid_18",
+      "prompt": "Procuro construir um acordo depois de uma conversa difícil.",
+      "dimension": "acordos",
+      "reverse": false
+    },
+    {
+      "id": "lid_19",
+      "prompt": "Procuro registrar o que aprendemos depois de um projeto.",
+      "dimension": "aprendizagem",
+      "reverse": false
+    },
+    {
+      "id": "lid_20",
+      "prompt": "Procuro manter os combinados mesmo em semanas difíceis.",
+      "dimension": "sustentacao",
+      "reverse": false
+    },
+    {
+      "id": "lid_21",
+      "prompt": "Distribuo tarefas sem conversar sobre o resultado esperado.",
+      "dimension": "direcionamento",
+      "reverse": true
+    },
+    {
+      "id": "lid_22",
+      "prompt": "Encerro discussões antes de ouvir as pessoas envolvidas.",
+      "dimension": "participacao",
+      "reverse": true
+    },
+    {
+      "id": "lid_23",
+      "prompt": "Evito conversar sobre problemas que continuam afetando o trabalho em grupo.",
+      "dimension": "acordos",
+      "reverse": true
+    },
+    {
+      "id": "lid_24",
+      "prompt": "Mantenho uma estratégia mesmo quando surgem informações que a contradizem.",
+      "dimension": "aprendizagem",
+      "reverse": true
+    },
+    {
+      "id": "lid_25",
+      "prompt": "Deixo de avisar o grupo quando percebo que não conseguirei cumprir um acordo.",
+      "dimension": "sustentacao",
+      "reverse": true
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "name": "maeda-perfis-development",
+  "private": true,
+  "version": "0.1.0",
+  "description": "Ferramentas de verificação do plugin Maeda Perfis",
+  "type": "module",
+  "engines": {"node": ">=24.18.0"},
+  "scripts": {"test": "node tests/run-integration.mjs", "lint:js": "node --check maeda-perfis/assets/app.js", "build": "python3 scripts/build.py"},
+  "devDependencies": {"@wp-playground/cli": "3.1.61"}
+}

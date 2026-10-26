@@ -1,0 +1,60 @@
+name: Verificar e publicar plugin
+
+on:
+  push:
+    branches: [main]
+    tags: ['v*']
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: maeda-perfis-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        php: ['8.1', '8.3', '8.4']
+    steps:
+      - uses: actions/checkout@v6
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php }}
+          coverage: none
+      - uses: actions/setup-node@v6
+        with:
+          node-version: '24'
+      - name: Conferir sintaxe PHP
+        run: git ls-files 'maeda-perfis/*.php' 'maeda-perfis/**/*.php' | xargs -n 1 php -l
+      - name: Verificar cálculo e bancos
+        run: php tests/unit.php
+      - name: Conferir JavaScript
+        run: node --check maeda-perfis/assets/app.js
+
+  release:
+    if: github.event_name != 'pull_request' && (github.ref == 'refs/heads/main' || startsWith(github.ref, 'refs/tags/v'))
+    needs: verify
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v6
+      - name: Montar ZIP e manifesto
+        run: python3 scripts/build.py
+      - name: Publicar versão se ainda não existir
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+        run: |
+          version=$(python3 -c 'import json; print(json.load(open("dist/update.json"))["version"])')
+          tag="v${version}"
+          if gh release view "$tag" >/dev/null 2>&1; then
+            echo "A versão ${version} já foi publicada. Incremente a versão para uma nova atualização."
+            exit 0
+          fi
+          gh release create "$tag" "dist/maeda-perfis-${version}.zip" dist/update.json --target "$GITHUB_SHA" --title "Maeda Perfis ${version}" --notes-file CHANGELOG.md

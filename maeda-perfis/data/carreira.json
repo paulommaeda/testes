@@ -1,0 +1,245 @@
+{
+  "key": "carreira",
+  "version": "0.1.0",
+  "title": "Interesses profissionais",
+  "description": "Explore atividades que despertam sua curiosidade e transforme seus interesses em experiências de aprendizagem.",
+  "icon": "sparkles",
+  "color": "#df9147",
+  "pilot": true,
+  "reference": "Organização conceitual de interesses RIASEC. Itens autorais, sem reprodução do O*NET Interest Profiler e sem equivalência validada.",
+  "minutes": "7–10",
+  "instructions": "Quanto interesse você tem hoje em realizar cada atividade? Considere o que gostaria de experimentar, mesmo que ainda precise aprender. Interesses não determinam uma profissão nem demonstram aptidão.",
+  "scale": {
+    "1": "Nenhum interesse",
+    "2": "Pouco interesse",
+    "3": "Interesse moderado",
+    "4": "Bastante interesse",
+    "5": "Muito interesse"
+  },
+  "dimensions": [
+    {
+      "key": "pratico",
+      "label": "Atividades práticas e técnicas",
+      "short_label": "Práticas",
+      "description": "Interesse declarado por trabalhar com ferramentas, materiais, objetos e soluções concretas.",
+      "action": "Experimente uma oficina, um projeto de montagem ou uma atividade técnica supervisionada e registre o que despertou seu interesse."
+    },
+    {
+      "key": "investigativo",
+      "label": "Investigação e análise",
+      "short_label": "Análise",
+      "description": "Interesse declarado por investigar problemas, examinar dados e compreender explicações.",
+      "action": "Escolha uma pergunta, reúna informações de fontes confiáveis e produza uma pequena conclusão com suas dúvidas restantes."
+    },
+    {
+      "key": "criativo",
+      "label": "Criação e expressão",
+      "short_label": "Criação",
+      "description": "Interesse declarado por produzir ideias, imagens, textos e outras formas de expressão.",
+      "action": "Crie uma pequena peça, texto ou proposta visual e compartilhe com alguém para conversar sobre o processo."
+    },
+    {
+      "key": "social",
+      "label": "Ensino e cuidado com pessoas",
+      "short_label": "Pessoas",
+      "description": "Interesse declarado por apoiar, ensinar e participar de atividades com pessoas.",
+      "action": "Participe de uma atividade supervisionada de apoio ou ensino e observe quais tarefas gostaria de conhecer melhor."
+    },
+    {
+      "key": "empreendedor",
+      "label": "Articulação e projetos",
+      "short_label": "Projetos",
+      "description": "Interesse declarado por propor iniciativas, negociar recursos e mobilizar pessoas.",
+      "action": "Desenhe uma pequena iniciativa com objetivo, público e recursos necessários; converse com alguém que poderia colaborar."
+    },
+    {
+      "key": "organizacional",
+      "label": "Organização e processos",
+      "short_label": "Processos",
+      "description": "Interesse declarado por estruturar informações, acompanhar registros e organizar rotinas.",
+      "action": "Organize uma rotina ou um conjunto de informações usando uma lista, planilha ou procedimento simples."
+    }
+  ],
+  "questions": [
+    {
+      "id": "car_01",
+      "prompt": "Montar um objeto seguindo um desenho ou instruções.",
+      "dimension": "pratico",
+      "reverse": false
+    },
+    {
+      "id": "car_02",
+      "prompt": "Investigar por que um fenômeno acontece.",
+      "dimension": "investigativo",
+      "reverse": false
+    },
+    {
+      "id": "car_03",
+      "prompt": "Criar um texto para expressar uma ideia.",
+      "dimension": "criativo",
+      "reverse": false
+    },
+    {
+      "id": "car_04",
+      "prompt": "Ajudar alguém a aprender um conteúdo.",
+      "dimension": "social",
+      "reverse": false
+    },
+    {
+      "id": "car_05",
+      "prompt": "Apresentar uma proposta para conseguir apoio.",
+      "dimension": "empreendedor",
+      "reverse": false
+    },
+    {
+      "id": "car_06",
+      "prompt": "Organizar informações em uma planilha.",
+      "dimension": "organizacional",
+      "reverse": false
+    },
+    {
+      "id": "car_07",
+      "prompt": "Aprender a utilizar uma ferramenta para resolver uma necessidade prática.",
+      "dimension": "pratico",
+      "reverse": false
+    },
+    {
+      "id": "car_08",
+      "prompt": "Comparar dados para encontrar padrões.",
+      "dimension": "investigativo",
+      "reverse": false
+    },
+    {
+      "id": "car_09",
+      "prompt": "Desenvolver a identidade visual de um projeto.",
+      "dimension": "criativo",
+      "reverse": false
+    },
+    {
+      "id": "car_10",
+      "prompt": "Participar de uma atividade de acolhimento.",
+      "dimension": "social",
+      "reverse": false
+    },
+    {
+      "id": "car_11",
+      "prompt": "Organizar uma iniciativa para atingir uma meta.",
+      "dimension": "empreendedor",
+      "reverse": false
+    },
+    {
+      "id": "car_12",
+      "prompt": "Criar uma sequência de etapas para um processo.",
+      "dimension": "organizacional",
+      "reverse": false
+    },
+    {
+      "id": "car_13",
+      "prompt": "Participar da preparação de um ambiente para uma atividade.",
+      "dimension": "pratico",
+      "reverse": false
+    },
+    {
+      "id": "car_14",
+      "prompt": "Testar uma explicação por meio de uma experiência.",
+      "dimension": "investigativo",
+      "reverse": false
+    },
+    {
+      "id": "car_15",
+      "prompt": "Imaginar novas formas de apresentar uma informação.",
+      "dimension": "criativo",
+      "reverse": false
+    },
+    {
+      "id": "car_16",
+      "prompt": "Explicar um procedimento a quem está começando.",
+      "dimension": "social",
+      "reverse": false
+    },
+    {
+      "id": "car_17",
+      "prompt": "Negociar uma solução que considere interesses diferentes.",
+      "dimension": "empreendedor",
+      "reverse": false
+    },
+    {
+      "id": "car_18",
+      "prompt": "Conferir registros para encontrar inconsistências.",
+      "dimension": "organizacional",
+      "reverse": false
+    },
+    {
+      "id": "car_19",
+      "prompt": "Entender como um equipamento funciona por dentro.",
+      "dimension": "pratico",
+      "reverse": false
+    },
+    {
+      "id": "car_20",
+      "prompt": "Resolver um problema que exige pesquisar informações.",
+      "dimension": "investigativo",
+      "reverse": false
+    },
+    {
+      "id": "car_21",
+      "prompt": "Participar da criação de uma produção artística.",
+      "dimension": "criativo",
+      "reverse": false
+    },
+    {
+      "id": "car_22",
+      "prompt": "Apoiar um projeto que atende necessidades de uma comunidade.",
+      "dimension": "social",
+      "reverse": false
+    },
+    {
+      "id": "car_23",
+      "prompt": "Participar da divulgação de um produto ou serviço.",
+      "dimension": "empreendedor",
+      "reverse": false
+    },
+    {
+      "id": "car_24",
+      "prompt": "Acompanhar prazos e documentos de um projeto.",
+      "dimension": "organizacional",
+      "reverse": false
+    },
+    {
+      "id": "car_25",
+      "prompt": "Realizar um pequeno projeto com materiais e peças.",
+      "dimension": "pratico",
+      "reverse": false
+    },
+    {
+      "id": "car_26",
+      "prompt": "Estudar um assunto em profundidade antes de tirar uma conclusão.",
+      "dimension": "investigativo",
+      "reverse": false
+    },
+    {
+      "id": "car_27",
+      "prompt": "Transformar uma referência em uma criação com minha própria interpretação.",
+      "dimension": "criativo",
+      "reverse": false
+    },
+    {
+      "id": "car_28",
+      "prompt": "Organizar uma atividade de aprendizagem em grupo.",
+      "dimension": "social",
+      "reverse": false
+    },
+    {
+      "id": "car_29",
+      "prompt": "Mobilizar pessoas para colocar um projeto em prática.",
+      "dimension": "empreendedor",
+      "reverse": false
+    },
+    {
+      "id": "car_30",
+      "prompt": "Manter um conjunto de informações atualizado e fácil de consultar.",
+      "dimension": "organizacional",
+      "reverse": false
+    }
+  ]
+}
