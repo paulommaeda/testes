@@ -1,14 +1,14 @@
-# Verificação da versão 0.1.0
+# Verificação da versão 0.2.0
 
 ## Ambiente
 
 Verificação local em WordPress Playground, com WordPress 7.1.3, WooCommerce 11.2.1 e PHP 8.3.33. O banco de testes usa a integração SQLite do Playground. Contas, produtos, pedidos e respostas são sintéticos; o envio de e-mails é interceptado no ambiente descartável.
 
-Os testes isolados de esquema e cálculo também foram executados em PHP 8.1, 8.3 e 8.4: **39 verificações aprovadas em cada versão**.
+Os testes isolados de esquema e cálculo também foram executados em PHP 8.1, 8.3 e 8.4: **70 verificações aprovadas em cada versão**.
 
 ## Integração
 
-Foram aprovadas **48 verificações**, incluindo:
+Foram aprovadas **63 verificações**: 48 do fluxo de aplicações e 15 de páginas, recuperação e relatórios antigos. Incluem:
 
 - Esquema dos quatro módulos e pontuação conhecida com itens invertidos.
 - Rejeição de respostas ausentes, fora da escala, desconhecidas ou com tipo inválido.
@@ -28,10 +28,16 @@ Foram aprovadas **48 verificações**, incluindo:
 - Reembolso parcial por quantidade e reembolso total, com manutenção do relatório do participante.
 - Autenticação e nonce nas rotas privadas.
 - Geração de relatórios dos quatro módulos.
+- Instalação das cinco páginas públicas, seleção da home e checkout com shortcode nativo.
+- Reinstalação sem duplicação e preservação de conteúdo editado.
+- Restauração da seleção anterior, respeitando mudanças posteriores do proprietário.
+- Recuperação de uma página que foi movida para a lixeira.
+- Catálogo com produtos reais por módulo e quantidade própria de uma variação.
+- Enriquecimento autorizado de relatório antigo a partir do instrumento original e preservação da nova leitura.
 
 ## Interface no navegador
 
-Foram aprovadas **20 verificações no Chromium**, com inspeção visual das telas:
+Foram aprovadas **94 verificações no Chromium**: 20 do aplicativo, 68 das páginas e fluxo comercial e 6 da revisão final de produto e impressão, com inspeção visual das telas:
 
 - Login real do WordPress e carregamento dos indicadores da conta.
 - Relatórios sem rolagem horizontal em 320, 390, 768 e 1440 pixels.
@@ -43,6 +49,19 @@ Foram aprovadas **20 verificações no Chromium**, com inspeção visual das tel
 - Preservação do convite no cadastro, cadastro pelo WooCommerce e retorno ao aceite.
 - Aceite com liberação do módulo recebido.
 - Ausência de erros JavaScript nas telas verificadas.
+- Home, loja, produto, carrinho, checkout e lançamento sem rolagem horizontal em 320, 390, 768 e 1440 pixels.
+- Menu de celular com abertura por botão e fechamento com Escape.
+- Filtros de módulo e quantidade ligados aos produtos cadastrados.
+- Inclusão de produto simples e variação no carrinho.
+- Seleção de variação com informação de módulo e aplicações antes da compra.
+- Checkout nativo com nonce, cadastro e método de pagamento de teste, até a página de pedido recebido.
+- Relatório desenvolvido nos tamanhos de celular e desktop.
+- Acesso ao botão de compra na primeira tela do produto em 320 e 390 pixels.
+- Impressão A4 gerada pelo Chromium e conteúdo conferido no PDF de teste.
+
+## Interpretação textual
+
+Os testes isolados também verificam leituras baixas, intermediárias e altas, empates, médias próximas, respostas divergentes na mesma dimensão, separação entre interesses e comportamentos, cobertura das dimensões e adaptação a instrumentos editados. Esses testes avaliam regras de software e coerência das condições; não demonstram validade psicológica.
 
 ## Escopo e limites
 

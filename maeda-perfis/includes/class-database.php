@@ -122,7 +122,7 @@ final class Database
             return $result;
         } catch (\Throwable $error) {
             $wpdb->query('ROLLBACK');
-            error_log('Maeda Perfis: operação interrompida em ' . get_class($error));
+            error_log('Nortume: operação interrompida em ' . get_class($error));
             return Plugin::error('database', 'Não foi possível concluir a operação. Tente novamente.', 500);
         }
     }

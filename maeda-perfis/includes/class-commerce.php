@@ -49,7 +49,7 @@ final class Commerce
         foreach (Modules::all() as $key=>$module) {
             $options[$key] = $module['title'];
         }
-        woocommerce_wp_select(['id'=>'_pmp_module','label'=>'Maeda Perfis · Módulo','options'=>$options,'description'=>'Cada aplicação deste produto libera somente o módulo selecionado.','desc_tip'=>true]);
+        woocommerce_wp_select(['id'=>'_pmp_module','label'=>'Nortume · Módulo','options'=>$options,'description'=>'Cada aplicação deste produto libera somente o módulo selecionado.','desc_tip'=>true]);
         woocommerce_wp_text_input(['id'=>'_pmp_pack_size','label'=>'Aplicações por unidade','type'=>'number','custom_attributes'=>['min'=>1,'max'=>500,'step'=>1],'description'=>'Exemplo: 10 aplicações por pacote. Duas unidades compradas liberam 20 aplicações.','desc_tip'=>true]);
         echo '</div>';
     }
@@ -182,7 +182,7 @@ final class Commerce
             $has_tests = true;
             if (!$buyer) {
                 if (!$order->get_meta('_pmp_missing_account')) {
-                    $order->add_order_note('Maeda Perfis: pedido sem conta de comprador. Vincule um cliente e atualize o status para liberar as aplicações.');
+                    $order->add_order_note('Nortume: pedido sem conta de comprador. Vincule um cliente e atualize o status para liberar as aplicações.');
                     $order->update_meta_data('_pmp_missing_account', 'yes');
                     $order->save();
                 }
@@ -211,10 +211,10 @@ final class Commerce
                 return true;
             });
             if (is_wp_error($result)) {
-                $order->add_order_note('Maeda Perfis: ' . $result->get_error_message());
+                $order->add_order_note('Nortume: ' . $result->get_error_message());
             }
             if ($order->get_total_refunded_for_item($item_id) > 0 && !$refunded && !$item->get_meta('_pmp_refund_review')) {
-                $order->add_order_note('Maeda Perfis: reembolso de valor sem quantidade no item ' . $item_id . '. Revise os créditos no painel do plugin.');
+                $order->add_order_note('Nortume: reembolso de valor sem quantidade no item ' . $item_id . '. Revise os créditos no painel do plugin.');
                 $item->update_meta_data('_pmp_refund_review','yes');
                 $item->save();
             }

@@ -12,4 +12,10 @@ try {
  for(const item of result.checks || [])console.log((item.passed?'PASS ':'FAIL ')+item.name);
  console.log(JSON.stringify({success:result.success,checks:result.checks?.length,versions:result.versions,error:result.error,db_error:result.db_error}));
  if(!result.success)process.exitCode=1;
+ if(result.success) {
+  const pages=await(await fetch(site.serverUrl+'/pmp-tests/site-integration.php')).json();
+  for(const item of pages.checks || [])console.log((item.passed?'PASS ':'FAIL ')+item.name);
+  console.log(JSON.stringify({success:pages.success,site_checks:pages.checks?.length,error:pages.error}));
+  if(!pages.success)process.exitCode=1;
+ }
 }finally{await site[Symbol.asyncDispose]();}

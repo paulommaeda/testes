@@ -11,6 +11,7 @@ final class Frontend
     {
         add_shortcode('maeda_perfis',[self::class,'render']);
         add_shortcode('testes_perfil',[self::class,'render']);
+        add_shortcode('nortume_perfis',[self::class,'render']);
         add_action('init',[self::class,'endpoints']);
         add_filter('woocommerce_account_menu_items',static function ($items) {
             $logout = $items['customer-logout'] ?? null;
@@ -48,7 +49,7 @@ final class Frontend
     public static function maybe_assets(): void
     {
         global $post;
-        if ((is_object($post) && (has_shortcode($post->post_content,'maeda_perfis') || has_shortcode($post->post_content,'testes_perfil'))) ||
+        if ((is_object($post) && (has_shortcode($post->post_content,'maeda_perfis') || has_shortcode($post->post_content,'testes_perfil') || has_shortcode($post->post_content,'nortume_perfis'))) ||
             (function_exists('is_account_page') && is_account_page()) || is_page((int) get_option('pmp_page_id'))) {
             self::assets();
         }
@@ -107,7 +108,7 @@ final class Frontend
             'logout_url'=>wp_logout_url(Plugin::url(preg_match('/^[a-f0-9]{64}$/',$token) ? ['pmp_invite'=>$token] : [])),
             'attempt_id'=>absint($_GET['pmp_attempt'] ?? 0),'report_id'=>absint($_GET['pmp_report'] ?? 0),
             'invite_token'=>$token,'invitation'=>$invitation,'site_name'=>get_bloginfo('name'),
-            'brand'=>sanitize_text_field(get_option('pmp_brand','Maeda Perfis')),
+            'brand'=>sanitize_text_field(get_option('pmp_brand','Nortume')),
             'catalog'=>Rest::catalog(),
         ];
         $id = wp_unique_id('pmp-');

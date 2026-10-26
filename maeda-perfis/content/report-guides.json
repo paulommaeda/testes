@@ -1,0 +1,458 @@
+{
+  "comportamento": {
+    "intro": "Este perfil reúne sua percepção sobre iniciar ações, criar conexões, sustentar acordos e trabalhar com critérios. Esses quatro temas podem aparecer de maneiras diferentes conforme a tarefa, o grupo e o momento. A síntese descreve o conjunto das suas respostas e ajuda a escolher situações para observar com mais atenção.",
+    "context": "Para aprofundar a leitura, escolha um contexto por vez: trabalho, estudo, família ou convivência. Compare o que você costuma fazer quando está à vontade com o que acontece quando há pouco tempo ou expectativas diferentes. O questionário não identifica automaticamente essas diferenças, mas suas experiências podem explicar onde a descrição se encaixa.",
+    "conversation": "Ao conversar com outra pessoa sobre seu resultado, explique uma preferência e pergunte como ela percebe isso na convivência. Combine um ajuste observável, como o tempo reservado para decidir, a forma de compartilhar ideias ou o nível de detalhe de uma entrega. Evite usar o perfil para justificar comportamentos que precisam ser negociados.",
+    "connections": {
+      "direcao": "Observe como a iniciativa encontra o segundo tema: antes de conduzir uma tarefa, escolha de que forma você também criará espaço para as pessoas, dará continuidade ao combinado ou verificará informações.",
+      "influencia": "Observe como a disposição para compartilhar ideias se articula com o segundo tema. Uma conversa pode ser o início de uma entrega quando termina com entendimento comum e um próximo passo definido.",
+      "constancia": "Observe como a continuidade dos acordos se articula com o segundo tema. Dar previsibilidade a uma atividade pode incluir comunicar mudanças, revisar detalhes e renegociar o ritmo quando necessário.",
+      "criterio": "Observe como o cuidado com informações se articula com o segundo tema. Definir o que precisa ser verificado ajuda a transformar análise em uma entrega compreensível para as pessoas envolvidas."
+    },
+    "dimensions": {
+      "direcao": {
+        "label": "Direção e iniciativa",
+        "reflection": "Em qual decisão recente você apresentou um caminho, e o que ajudou ou dificultou dar espaço às outras pessoas?",
+        "high": {
+          "reading": "Você tende a reconhecer em si os comportamentos de iniciar atividades, apresentar uma posição e buscar encaminhamentos. Isso sugere disposição declarada para transformar uma necessidade em ação, especialmente nas situações que você tinha em mente ao responder.",
+          "opportunity": "Essa preferência pode ser usada para tornar o próximo passo explícito: explicar o objetivo, propor um início e verificar quem precisa participar da decisão.",
+          "attention": "Agilidade pode reduzir o espaço de escuta quando o encaminhamento vem cedo demais. Observe se as pessoas compreenderam o objetivo e puderam trazer informações antes de fechar uma decisão."
+        },
+        "middle": {
+          "reading": "Sua concordância intermediária indica que tomar a frente não aparece com a mesma intensidade em todas as situações. Você pode reconhecer iniciativa em alguns contextos e preferir observar ou receber direcionamento em outros; o questionário não identifica sozinho quais condições fazem diferença.",
+          "opportunity": "Investigue quando há clareza suficiente para você agir: conhecer o assunto, ter autonomia ou entender os limites de responsabilidade pode mudar sua participação.",
+          "attention": "Evite interpretar a média como indecisão. Procure distinguir uma escolha consciente de aguardar de uma situação em que faltou informação, espaço ou apoio para se posicionar."
+        },
+        "low": {
+          "reading": "Você demonstrou menor concordância com iniciar atividades e expressar decisões nas situações descritas. Esse resultado pode convidar a investigar como você participa quando alguém precisa propor um caminho, sem concluir que falta capacidade de iniciativa.",
+          "opportunity": "Uma experimentação possível é assumir uma decisão pequena, com objetivo e limites combinados, e observar o que facilita apresentar sua posição.",
+          "attention": "Não confunda menor concordância com passividade permanente. Contexto, hierarquia e experiência podem influenciar a liberdade que você percebe para agir."
+        }
+      },
+      "influencia": {
+        "label": "Expressão e conexão",
+        "reflection": "Em que ambiente suas ideias aparecem com mais clareza, e que formato ajuda você a ouvir além de falar?",
+        "high": {
+          "reading": "Você reconhece com maior frequência os comportamentos de iniciar conversas, compartilhar ideias e mobilizar trocas. Sua percepção aponta para uma presença comunicativa nas situações descritas, com interesse em tornar ideias visíveis e construir contato.",
+          "opportunity": "Uma forma de aproveitar essa preferência é abrir uma conversa com uma ideia clara, ouvir as reações e registrar o entendimento construído pelo grupo.",
+          "attention": "A quantidade de participação não garante compreensão compartilhada. Observe se você também verifica dúvidas e oferece tempo para quem organiza as ideias antes de falar."
+        },
+        "middle": {
+          "reading": "Sua concordância intermediária sugere uma expressão que pode depender das pessoas, do assunto ou do ambiente. Você pode se comunicar com abertura em contextos conhecidos e selecionar mais sua participação em outros.",
+          "opportunity": "Observe quais formatos favorecem suas contribuições: conversa individual, grupo pequeno, preparação prévia ou registro escrito podem produzir experiências diferentes.",
+          "attention": "Não transforme a média em um rótulo de sociabilidade. Ela não informa a qualidade das suas relações nem como você se sente em todos os grupos."
+        },
+        "low": {
+          "reading": "Você demonstrou menor concordância com iniciar conversas e expor ideias espontaneamente. Nas situações consideradas, esses comportamentos podem aparecer menos em sua autopercepção, sem indicar falta de interesse pelas pessoas ou dificuldade fixa de comunicação.",
+          "opportunity": "Experimente preparar uma contribuição breve antes de uma conversa e escolher um momento para apresentá-la. Observe quais condições tornam a troca mais confortável.",
+          "attention": "A discrição pode ter vários motivos que o questionário não examina. Evite concluir que você precisa falar mais em toda situação; priorize a clareza da contribuição e a oportunidade de participar."
+        }
+      },
+      "constancia": {
+        "label": "Constância e apoio",
+        "reflection": "Qual acordo você conseguiu sustentar recentemente e em que momento foi necessário rever o ritmo?",
+        "high": {
+          "reading": "Você se reconhece nos comportamentos de manter continuidade, acompanhar acordos e oferecer apoio ao grupo. As respostas sugerem valorização declarada de um ritmo compreensível e de relações em que as pessoas sabem com o que podem contar.",
+          "opportunity": "Essa preferência pode ajudar a tornar a continuidade visível: acompanhar um combinado, sinalizar mudanças e perguntar que apoio é necessário para a próxima etapa.",
+          "attention": "A busca por previsibilidade pode dificultar uma revisão necessária se o acordo for tratado como imutável. Verifique quando sustentar um plano e quando renegociá-lo."
+        },
+        "middle": {
+          "reading": "Sua concordância intermediária mostra que continuidade e previsibilidade podem ter pesos diferentes conforme a situação. Você pode valorizar acordos estáveis em algumas atividades e preferir maior variação em outras.",
+          "opportunity": "Compare duas experiências: uma de rotina e outra de mudança. Observe quais informações e acordos ajudaram você a manter a participação em cada uma.",
+          "attention": "Uma média intermediária não define comprometimento. O relatório não examina sozinho sua carga de atividades, suas condições de trabalho ou o apoio que você recebe."
+        },
+        "low": {
+          "reading": "Você demonstrou menor concordância com manter um ritmo previsível e acompanhar continuidades nas situações propostas. Isso merece ser relacionado à sua rotina e às mudanças que vive, sem interpretar a pontuação como falta de cuidado com as pessoas.",
+          "opportunity": "Se essa área for relevante, experimente acompanhar um compromisso pequeno por alguns dias e registrar o que ajuda ou interrompe a continuidade.",
+          "attention": "Não assuma que menor preferência por rotina equivale a desinteresse em colaborar. Explore a diferença entre desejar variedade e encontrar dificuldade para sustentar um acordo específico."
+        }
+      },
+      "criterio": {
+        "label": "Critério e precisão",
+        "reflection": "Em uma entrega recente, o que precisava ser conferido e quando a revisão já era suficiente?",
+        "high": {
+          "reading": "Você reconhece os comportamentos de conferir informações, observar padrões e cuidar de detalhes antes de concluir uma tarefa. As respostas sugerem atenção declarada à qualidade das informações e aos critérios usados para uma entrega.",
+          "opportunity": "Uma aplicação possível é combinar com o grupo o que precisa ser verificado e quais evidências serão suficientes para considerar uma atividade concluída.",
+          "attention": "A revisão perde utilidade quando não tem limite ou prioridade. Observe se o nível de detalhe está adequado ao risco, ao prazo e à necessidade de quem receberá a entrega."
+        },
+        "middle": {
+          "reading": "Sua concordância intermediária indica que o cuidado com detalhes e verificações pode variar conforme a tarefa. Você pode conferir mais quando a situação exige precisão e adotar um caminho mais direto em outros momentos.",
+          "opportunity": "Investigue quais sinais fazem você aumentar ou reduzir a revisão: impacto de um erro, familiaridade com o assunto, prazo e clareza dos critérios.",
+          "attention": "Não conclua que a média representa falta de qualidade. Analise uma entrega concreta e a adequação do cuidado ao que era necessário naquele contexto."
+        },
+        "low": {
+          "reading": "Você demonstrou menor concordância com checar informações e trabalhar com padrões nas situações descritas. A leitura sugere investigar como você decide o que precisa ser conferido, sem concluir que suas entregas têm baixa qualidade.",
+          "opportunity": "Uma experiência útil pode ser adotar uma lista curta de verificação em uma tarefa de maior impacto, mantendo um tempo definido para revisar.",
+          "attention": "Evite confundir menor preferência por detalhes com incapacidade de análise. Verifique se os critérios eram claros e se você tinha acesso às informações necessárias."
+        }
+      }
+    }
+  },
+  "lideranca": {
+    "intro": "Este perfil organiza como você percebe sua participação ao coordenar atividades e colaborar com outras pessoas. As dimensões tratam de objetivos, escuta, feedback, aprendizagem e compromissos. Elas descrevem práticas relatadas e oferecem temas para desenvolvimento; a pontuação não certifica prontidão para liderar nem mede o desempenho de uma equipe.",
+    "context": "Considere a autonomia que você tem hoje, o tamanho do grupo e o tipo de responsabilidade que assume. A mesma pessoa pode ter oportunidades muito diferentes para liderar em cada situação. Compare suas respostas com episódios recentes e, quando possível, com retornos de quem participou dessas experiências.",
+    "conversation": "Escolha uma atividade recente e peça à equipe exemplos sobre o que trouxe clareza, o que facilitou a participação e o que precisa ser ajustado. Conversem sobre comportamentos e acordos concretos. O relatório deve apoiar o diálogo sobre desenvolvimento, sem substituir avaliação contextual de responsabilidades ou desempenho.",
+    "connections": {
+      "direcionamento": "Observe como a organização de objetivos pode incorporar o segundo tema. Explicar um destino será mais útil quando as pessoas também souberem como contribuir, trazer dúvidas e renegociar o trabalho.",
+      "participacao": "Observe como a escuta pode se transformar em acordos ligados ao segundo tema. Participar de uma decisão não exige unanimidade, mas pede clareza sobre o que será considerado e quem decidirá.",
+      "acordos": "Observe como a conversa sobre divergências se conecta ao segundo tema. Um feedback ganha utilidade quando descreve um fato, abre espaço para a outra perspectiva e termina com um próximo passo possível.",
+      "aprendizagem": "Observe como a experimentação se conecta ao segundo tema. Uma mudança pequena, com hipótese e revisão combinadas, permite aprender sem perder de vista o trabalho que precisa continuar.",
+      "sustentacao": "Observe como o cuidado com compromissos se conecta ao segundo tema. Dar continuidade inclui comunicar limites e ajustar expectativas quando a capacidade disponível muda."
+    },
+    "dimensions": {
+      "direcionamento": {
+        "label": "Direcionamento de atividades",
+        "reflection": "As pessoas de uma atividade recente descreveriam o mesmo objetivo e as mesmas prioridades que você?",
+        "high": {
+          "reading": "Você se reconhece nas práticas de explicar objetivos, estabelecer prioridades e acompanhar atividades. As respostas indicam que tornar o trabalho compreensível e orientar o próximo passo faz parte da forma como você percebe sua atuação com grupos.",
+          "opportunity": "Use essa disposição para construir um entendimento comum sobre resultado esperado, responsabilidades e momento de revisão, pedindo que as pessoas expliquem o combinado com suas palavras.",
+          "attention": "Definir um caminho não garante que ele seja viável para todos. Abra espaço para revisar recursos, dependências e dúvidas antes de distribuir responsabilidades."
+        },
+        "middle": {
+          "reading": "Sua concordância intermediária sugere que dar clareza aos objetivos pode acontecer de forma diferente conforme a atividade ou sua posição no grupo. Algumas situações podem ter direcionamento explícito e outras depender de acordos informais.",
+          "opportunity": "Escolha uma tarefa recente e confira se objetivo, responsável e prazo estavam claros para quem participou. Use as diferenças de entendimento como ponto de aprendizagem.",
+          "attention": "Evite concluir que você precisa controlar mais. Às vezes, o ajuste necessário é tornar um acordo visível e confirmar o que cada pessoa entendeu."
+        },
+        "low": {
+          "reading": "Você demonstrou menor concordância com as práticas de explicitar objetivos e organizar prioridades. Isso pode refletir pouca oportunidade de conduzir tarefas ou um tema a experimentar; a média não mede sua capacidade de liderar.",
+          "opportunity": "Se fizer sentido para sua função, conduza o alinhamento de uma atividade pequena, com apoio, e peça retorno sobre a clareza do combinado.",
+          "attention": "Não amplie sua responsabilidade além da autonomia que possui. Diferencie o que você pode esclarecer do que depende de decisões ou recursos de outras pessoas."
+        }
+      },
+      "participacao": {
+        "label": "Participação e escuta",
+        "reflection": "Quem tem menos oportunidade de contribuir nas suas conversas e que ajuste de formato poderia ajudar?",
+        "high": {
+          "reading": "Você reconhece as práticas de ouvir perspectivas diferentes e criar espaço de participação. Isso aponta para escuta declarada como parte da sua atuação em grupo, especialmente ao reunir contribuições antes de construir encaminhamentos.",
+          "opportunity": "Transforme essa preferência em participação concreta: explique o assunto, ofereça formas diferentes de contribuição e dê retorno sobre como as ideias foram consideradas.",
+          "attention": "Ouvir todos não exige adiar indefinidamente uma decisão. Combine prazos e critérios, e respeite quem prefere contribuir depois ou por escrito."
+        },
+        "middle": {
+          "reading": "Sua concordância intermediária indica que a participação pode depender do tempo, do formato da conversa ou das pessoas presentes. Você pode abrir mais espaço em alguns assuntos e conduzir outros de modo mais direto.",
+          "opportunity": "Observe quem costuma contribuir e quem encontra menos espaço. Experimente uma mudança pequena no formato da próxima conversa e avalie o efeito.",
+          "attention": "Não interprete silêncio automaticamente como concordância. Verifique se as pessoas tiveram informação, tempo e segurança suficientes para trazer suas perspectivas."
+        },
+        "low": {
+          "reading": "Você demonstrou menor concordância com as práticas de buscar opiniões e ampliar a participação. O resultado oferece um tema para observar nas reuniões, sem afirmar que você não se importa com as pessoas.",
+          "opportunity": "Experimente pedir uma contribuição específica antes de fechar um encaminhamento, deixando claro que a pessoa pode escolher como e quando responder.",
+          "attention": "A participação não deve se tornar exposição obrigatória. Procure condições de escuta e alternativas de contribuição, considerando os limites e o papel de cada pessoa."
+        }
+      },
+      "acordos": {
+        "label": "Acordos e feedback",
+        "reflection": "Qual conversa de ajuste está esperando por um fato claro, uma escuta e um próximo passo possível?",
+        "high": {
+          "reading": "Você se reconhece nas práticas de conversar sobre divergências, reconhecer contribuições e oferecer retorno. Suas respostas sugerem disposição declarada para tratar o que precisa ser ajustado e transformar conversas em acordos.",
+          "opportunity": "Uma forma de apoiar o grupo é descrever fatos observáveis, ouvir a outra leitura da situação e combinar o que cada pessoa fará depois.",
+          "attention": "A familiaridade com feedback não garante que a outra pessoa o compreenda da mesma forma. Confira entendimento, contexto e possibilidade real de cumprir o acordo."
+        },
+        "middle": {
+          "reading": "Sua concordância intermediária sugere que conversas de ajuste e reconhecimento podem acontecer em intensidades diferentes. Alguns temas podem ser tratados com facilidade, enquanto outros ficam para depois ou dependem de preparação.",
+          "opportunity": "Escolha uma conversa pequena que valha a pena ter. Prepare um fato, seu efeito e uma pergunta aberta para entender a outra perspectiva.",
+          "attention": "Não force uma conclusão a partir de uma única conversa. Considere relações de poder, condições de diálogo e o tempo necessário para que os acordos façam sentido."
+        },
+        "low": {
+          "reading": "Você demonstrou menor concordância com as práticas de tratar divergências e construir feedback. Isso pode convidar a investigar o espaço e os recursos que você tem para essas conversas, sem definir uma dificuldade permanente.",
+          "opportunity": "Experimente começar por um reconhecimento específico ou por um ajuste de baixa complexidade, em momento combinado e com foco no comportamento observado.",
+          "attention": "Evite acumular várias insatisfações em uma mesma conversa. Se houver conflito importante, busque o acompanhamento adequado ao contexto da equipe."
+        }
+      },
+      "aprendizagem": {
+        "label": "Aprendizagem e adaptação",
+        "reflection": "Que pequena mudança você poderia experimentar e quais evidências ajudariam a avaliar seu efeito?",
+        "high": {
+          "reading": "Você reconhece as práticas de rever estratégias, testar alternativas e aprender com o grupo. As respostas sugerem abertura declarada para usar a experiência como informação e ajustar o modo de trabalhar.",
+          "opportunity": "Proponha um experimento pequeno com hipótese, prazo e critério de revisão. Registre o que o grupo aprendeu, inclusive quando a alternativa não trouxe o resultado esperado.",
+          "attention": "Mudar muitas práticas ao mesmo tempo dificulta entender o efeito de cada uma. Preserve o que precisa continuar e combine o alcance da experiência."
+        },
+        "middle": {
+          "reading": "Sua concordância intermediária indica que experimentar e rever caminhos pode depender do assunto e das condições disponíveis. Você pode buscar novidades em algumas tarefas e preferir práticas conhecidas em outras.",
+          "opportunity": "Compare uma mudança que funcionou com outra que encontrou resistência. Observe diferenças de apoio, tempo, risco e clareza do propósito.",
+          "attention": "Não trate cautela como ausência de aprendizagem. Identifique o que tornaria um teste pequeno suficientemente claro e viável para o grupo."
+        },
+        "low": {
+          "reading": "Você demonstrou menor concordância com revisar estratégias e experimentar alternativas. O resultado sugere um tema de observação, sem indicar incapacidade de aprender; talvez o contexto ofereça pouco espaço para testar mudanças.",
+          "opportunity": "Se houver autonomia, escolha uma melhoria pequena e reversível e combine previamente como avaliar a experiência. Procure apoio para interpretar os resultados.",
+          "attention": "Não confunda experimentação com improviso contínuo. Algumas atividades pedem procedimentos estáveis, e qualquer mudança precisa respeitar as exigências do trabalho."
+        }
+      },
+      "sustentacao": {
+        "label": "Sustentação de compromissos",
+        "reflection": "Qual compromisso precisa de uma atualização de prazo, prioridade ou capacidade nesta semana?",
+        "high": {
+          "reading": "Você se reconhece nas práticas de acompanhar compromissos, comunicar limites e reorganizar demandas. As respostas sugerem atenção declarada à continuidade do trabalho e ao alinhamento entre o combinado e a capacidade disponível.",
+          "opportunity": "Use essa disposição para sinalizar cedo impedimentos e renegociar prioridades com as pessoas afetadas, tornando visível o que pode ser assumido.",
+          "attention": "Sustentar compromissos não exige absorver toda a carga do grupo. Observe se você está assumindo tarefas que precisam de distribuição ou revisão de expectativas."
+        },
+        "middle": {
+          "reading": "Sua concordância intermediária indica que a continuidade e a comunicação de limites podem variar conforme a demanda. Alguns compromissos podem estar bem acompanhados, enquanto outros precisam de maior visibilidade ou renegociação.",
+          "opportunity": "Revise os compromissos da semana e escolha um que precise de atualização. Explique o que mudou e proponha um próximo passo possível.",
+          "attention": "Não use a média para julgar disciplina ou dedicação. Analise a quantidade de demandas, os recursos e a clareza das prioridades antes de definir ajustes."
+        },
+        "low": {
+          "reading": "Você demonstrou menor concordância com acompanhar compromissos e comunicar limites nas situações propostas. Essa leitura pode apontar para a necessidade de tornar demandas visíveis, sem explicar sozinha por que isso acontece.",
+          "opportunity": "Experimente registrar poucos compromissos prioritários e combinar um momento curto para revisar andamento, impedimentos e necessidade de apoio.",
+          "attention": "Se a carga ultrapassa sua capacidade, uma lista melhor não resolve tudo. Converse sobre prioridades, distribuição de trabalho e condições reais de entrega."
+        }
+      }
+    }
+  },
+  "carreira": {
+    "intro": "Este perfil descreve os tipos de atividade que despertam seu interesse hoje. O objetivo é ampliar a exploração profissional e apoiar experiências de aprendizagem. Gostar de uma atividade, já saber realizá-la e ter oportunidade de trabalhar com ela são coisas diferentes; as médias deste questionário tratam somente do interesse declarado.",
+    "context": "Interesses podem mudar com o contato com novas áreas e com suas experiências. Considere também valores, condições de acesso, formação necessária, rotina de trabalho e oportunidades reais. O relatório não indica uma profissão certa e não exclui caminhos; ele ajuda a formular perguntas melhores para investigar possibilidades.",
+    "conversation": "Converse com alguém que conheça uma área de seu interesse e pergunte como é a rotina, quais tarefas ocupam mais tempo e quais dificuldades fazem parte do trabalho. Compare essa descrição com o que você gostaria de experimentar. Prefira observar e participar de uma atividade acessível antes de transformar a curiosidade em uma decisão ampla.",
+    "connections": {
+      "pratico": "Uma experiência que produza algo concreto pode ajudar você a explorar também o segundo tema: por exemplo, documentar o processo, investigar um problema ou colaborar com quem utilizará a solução.",
+      "investigativo": "Uma pergunta real pode ligar a investigação ao segundo tema. Procure uma atividade que permita reunir evidências e apresentar uma conclusão em uma forma que você também tenha curiosidade de experimentar.",
+      "criativo": "Um projeto autoral pequeno pode ligar a criação ao segundo tema. Defina uma proposta que permita experimentar o processo, ouvir retorno e perceber se há vontade de continuar aprendendo.",
+      "social": "Uma atividade de ensino ou apoio pode incluir o segundo tema. Conheça a rotina e os limites de responsabilidade antes de escolher uma experiência supervisionada com outras pessoas.",
+      "empreendedor": "Um projeto com objetivo e público definidos pode aproximar a articulação do segundo tema. Observe tanto a construção da proposta quanto as atividades de acompanhamento que a sustentam.",
+      "organizacional": "Uma pequena melhoria em um processo pode aproximar organização e o segundo tema. Experimente registrar etapas e entender quem usa a informação produzida."
+    },
+    "dimensions": {
+      "pratico": {
+        "label": "Atividades práticas e técnicas",
+        "reflection": "Qual atividade concreta você gostaria de observar ou experimentar, e quais cuidados de formação ela exige?",
+        "high": {
+          "reading": "Você declarou maior interesse por atividades com ferramentas, materiais, objetos e resultados concretos. Isso sugere curiosidade por conhecer como algo funciona na prática e por participar de processos em que é possível observar uma transformação.",
+          "opportunity": "Uma oficina ou projeto supervisionado pode ajudar a descobrir quais partes atraem você: construir, ajustar, reparar, operar ou acompanhar um processo.",
+          "attention": "O interesse não comprova habilidade técnica nem dispensa formação e segurança. Conheça as exigências antes de realizar atividades com equipamentos ou materiais."
+        },
+        "middle": {
+          "reading": "Seu interesse por atividades práticas ficou em uma região intermediária. Algumas tarefas podem despertar curiosidade e outras parecer pouco atraentes; conhecer exemplos diferentes pode ajudar a distinguir essas preferências.",
+          "opportunity": "Compare uma experiência de montagem, uma de manutenção e outra de operação, em condições adequadas de aprendizagem. Registre o que gostaria de repetir.",
+          "attention": "Não conclua que todas as atividades técnicas são semelhantes. A rotina, o ambiente e os materiais usados podem mudar bastante o tipo de experiência."
+        },
+        "low": {
+          "reading": "Você declarou menor interesse por atividades práticas e técnicas neste momento. Isso descreve sua vontade de experimentar os exemplos apresentados, sem indicar falta de capacidade para aprender procedimentos ou lidar com objetos.",
+          "opportunity": "Se houver curiosidade específica, conheça uma atividade curta e acessível antes de descartar uma área inteira. Considere também o contato que já teve com esses temas.",
+          "attention": "Evite transformar o resultado em uma proibição de escolha. Algumas ocupações combinam tarefas práticas com atividades de outros interesses que podem atrair você."
+        }
+      },
+      "investigativo": {
+        "label": "Investigação e análise",
+        "reflection": "Qual pergunta você teria vontade de investigar mesmo antes de conhecer uma resposta?",
+        "high": {
+          "reading": "Você declarou maior interesse por investigar perguntas, analisar informações e compreender explicações. Esse resultado sugere curiosidade por atividades que pedem examinar evidências e construir entendimento sobre um problema.",
+          "opportunity": "Experimente uma investigação pequena: formule uma pergunta, selecione fontes, compare informações e apresente o que conseguiu concluir e o que permanece incerto.",
+          "attention": "O interesse por análise não demonstra domínio de métodos ou de uma área científica. Observe também se você gosta das etapas de coleta, revisão e documentação."
+        },
+        "middle": {
+          "reading": "Seu interesse por investigação e análise ficou em uma região intermediária. A curiosidade pode depender do assunto ou do tipo de problema, e não aparecer da mesma forma em qualquer atividade de pesquisa.",
+          "opportunity": "Escolha um tema próximo da sua vida e compare a experiência de buscar dados com a de interpretar explicações. Veja qual etapa desperta mais vontade de aprender.",
+          "attention": "Não use uma experiência escolar isolada para representar toda atividade investigativa. Métodos, assuntos e ambientes podem oferecer vivências bastante diferentes."
+        },
+        "low": {
+          "reading": "Você declarou menor interesse por atividades de investigação e análise hoje. Isso não avalia sua capacidade de raciocinar ou compreender conteúdos; indica menor atração pelos exemplos apresentados.",
+          "opportunity": "Caso uma área chame sua atenção, conheça um problema real e acessível antes de avaliar se a investigação faz parte do que você deseja explorar.",
+          "attention": "Evite confundir menor interesse com dificuldade intelectual. A decisão de explorar um tema também depende de oportunidade, familiaridade e propósito."
+        }
+      },
+      "criativo": {
+        "label": "Criação e expressão",
+        "reflection": "Que tipo de criação desperta vontade de participar do processo, inclusive da revisão?",
+        "high": {
+          "reading": "Você declarou maior interesse por criar ideias, textos, imagens e outras formas de expressão. Isso sugere vontade de participar de atividades que permitem desenvolver propostas e experimentar maneiras de comunicar ou produzir algo.",
+          "opportunity": "Escolha uma pequena peça ou projeto, acompanhe o processo até uma primeira versão e peça retorno. Observe se a revisão também desperta interesse.",
+          "attention": "Gostar de criar não comprova talento ou formação. Conheça também as restrições, os prazos e as etapas de revisão presentes nas atividades profissionais da área."
+        },
+        "middle": {
+          "reading": "Seu interesse por criação e expressão ficou em uma região intermediária. Você pode se aproximar de algumas linguagens e se interessar menos por outras; a média reúne essas possibilidades.",
+          "opportunity": "Experimente dois formatos diferentes, como texto e imagem, com objetivos pequenos. Compare a vontade de continuar e o tipo de processo que você apreciou.",
+          "attention": "Não reduza criatividade a produção artística. Diferentes áreas permitem elaborar soluções, mas a rotina e o espaço de experimentação variam."
+        },
+        "low": {
+          "reading": "Você declarou menor interesse pelas atividades de criação e expressão apresentadas. Isso não demonstra ausência de criatividade; descreve menor atração por esses tipos de experiência no momento da resposta.",
+          "opportunity": "Se desejar ampliar o contato, experimente uma tarefa com estrutura clara e finalidade concreta, sem obrigação de produzir algo original ou publicável.",
+          "attention": "Evite concluir que você só pode trabalhar com rotinas fixas. Uma ocupação pode incluir criação em proporções e formatos diferentes dos exemplos do questionário."
+        }
+      },
+      "social": {
+        "label": "Ensino e cuidado com pessoas",
+        "reflection": "Você se interessa mais por explicar, acompanhar ou apoiar, e em qual contexto gostaria de experimentar isso?",
+        "high": {
+          "reading": "Você declarou maior interesse por apoiar, ensinar e participar de atividades voltadas a pessoas. A leitura sugere curiosidade pela dimensão de orientação e cuidado presente em diferentes situações de aprendizagem e convivência.",
+          "opportunity": "Uma atividade acompanhada de ensino ou apoio pode ajudar a conhecer a rotina, a preparação e os limites envolvidos, além do contato direto com as pessoas.",
+          "attention": "Interesse em ajudar não substitui formação, supervisão ou limites de responsabilidade. Observe também as demandas emocionais e as tarefas de preparação e registro."
+        },
+        "middle": {
+          "reading": "Seu interesse por ensino e cuidado ficou em uma região intermediária. Você pode se interessar por certos públicos, assuntos ou formatos e se sentir menos atraído por outros.",
+          "opportunity": "Conheça atividades de orientação em contextos diferentes e observe se prefere explicar conteúdos, acompanhar processos ou apoiar necessidades específicas.",
+          "attention": "Não interprete a média como medida de empatia. O questionário não avalia a qualidade das relações nem sua disposição para toda forma de convivência."
+        },
+        "low": {
+          "reading": "Você declarou menor interesse por atividades de ensino e cuidado com pessoas. Isso representa sua preferência atual pelos exemplos e não avalia empatia, capacidade de colaboração ou valor pessoal.",
+          "opportunity": "Se houver uma possibilidade concreta, conheça o papel e a rotina antes de decidir. Algumas funções combinam contato humano com tarefas técnicas ou analíticas.",
+          "attention": "Evite concluir que você deve trabalhar isoladamente. Mesmo áreas de menor contato direto costumam exigir comunicação, cooperação e acordos com outras pessoas."
+        }
+      },
+      "empreendedor": {
+        "label": "Articulação e projetos",
+        "reflection": "Em um projeto, qual etapa atrai mais você: propor, negociar, organizar ou acompanhar a execução?",
+        "high": {
+          "reading": "Você declarou maior interesse por articular pessoas, apresentar propostas e desenvolver projetos. Isso sugere curiosidade por atividades que envolvem construir adesão, organizar iniciativas e acompanhar a busca de um objetivo.",
+          "opportunity": "Experimente propor um projeto pequeno, com público, recursos e entrega definidos. Observe seu interesse pela negociação e pelo acompanhamento após a apresentação inicial.",
+          "attention": "Esse interesse não prevê sucesso financeiro nem comprova capacidade de gestão. Conheça custos, limites e responsabilidades antes de assumir compromissos relevantes."
+        },
+        "middle": {
+          "reading": "Seu interesse por articulação e projetos ficou em uma região intermediária. Algumas etapas podem atrair você mais do que outras, como apresentar uma ideia, negociar condições ou acompanhar sua execução.",
+          "opportunity": "Participe de um projeto pequeno em um papel definido e registre quais etapas gostaria de conhecer melhor em uma próxima experiência.",
+          "attention": "Não restrinja essa dimensão a abrir uma empresa. Articular iniciativas também aparece em organizações, atividades comunitárias e projetos de aprendizagem."
+        },
+        "low": {
+          "reading": "Você declarou menor interesse por articulação e projetos neste momento. Isso não significa incapacidade de influenciar ou coordenar tarefas; indica menor atração pelos exemplos apresentados.",
+          "opportunity": "Se uma iniciativa específica fizer sentido, conheça a rotina e experimente uma responsabilidade pequena antes de decidir sobre funções mais amplas.",
+          "attention": "Evite interpretar essa média como falta de ambição. Objetivos profissionais podem ser construídos por caminhos variados, com diferentes níveis de negociação e exposição."
+        }
+      },
+      "organizacional": {
+        "label": "Organização e processos",
+        "reflection": "Que processo você gostaria de entender ou tornar mais claro, e para quem essa melhoria seria útil?",
+        "high": {
+          "reading": "Você declarou maior interesse por organizar informações, acompanhar registros e estruturar processos. A leitura sugere curiosidade por atividades que tornam etapas, dados e responsabilidades mais claros e utilizáveis.",
+          "opportunity": "Experimente melhorar um fluxo pequeno: registre as etapas, identifique quem usa a informação e avalie se o processo ficou mais compreensível.",
+          "attention": "Gostar de organização não comprova precisão ou domínio de ferramentas. Conheça também as tarefas repetitivas e as exigências de atualização que sustentam os processos."
+        },
+        "middle": {
+          "reading": "Seu interesse por organização e processos ficou em uma região intermediária. Você pode gostar de estruturar certas atividades e se interessar menos por rotinas de registro ou acompanhamento de outros tipos.",
+          "opportunity": "Compare uma tarefa de planejar etapas com outra de manter informações atualizadas. Observe onde há mais curiosidade e disposição para continuar aprendendo.",
+          "attention": "Não trate organização como uma atividade única. O tipo de informação, a ferramenta e o propósito podem mudar bastante a experiência."
+        },
+        "low": {
+          "reading": "Você declarou menor interesse por organização e processos. Isso não mede sua responsabilidade ou capacidade de planejar a própria vida; descreve menor atração pelos exemplos profissionais apresentados.",
+          "opportunity": "Caso queira conhecer a área, escolha uma melhoria pequena com finalidade visível e observe o processo completo, incluindo manutenção e atualização.",
+          "attention": "Evite descartar toda ocupação que contém registros. Muitas áreas combinam organização com atividades de outros interesses e em proporções diferentes."
+        }
+      }
+    }
+  },
+  "servico": {
+    "intro": "Este perfil descreve seu interesse atual por diferentes formas de contribuir em uma comunidade, igreja, ministério ou equipe de voluntários. Ele oferece pontos de partida para conhecer atividades e conversar sobre participação. As respostas não identificam dons espirituais, vocação, maturidade de fé ou autorização para exercer uma função.",
+    "context": "Uma escolha de serviço também depende de disponibilidade, preparo, supervisão e necessidades da comunidade. Ter interesse não significa estar pronto para toda responsabilidade de uma área. Prefira experiências pequenas e acompanhadas, com orientações claras, e avalie como você se sente depois de conhecer a rotina real.",
+    "conversation": "Leve o relatório à pessoa responsável pela equipe e explique o que gostaria de conhecer. Pergunte sobre rotina, preparação, limites, acompanhamento e tempo necessário. Combinem uma participação inicial com possibilidade de revisão, sem tratar o resultado como obrigação de assumir um ministério ou permanecer em uma função.",
+    "connections": {
+      "acolhimento": "Uma experiência de recepção pode também aproximar o segundo tema. Observe se o que desperta seu interesse é a conversa, a preparação, a comunicação ou o acompanhamento das pessoas.",
+      "ensino": "Uma pequena contribuição de formação pode incluir o segundo tema. Antes de assumir uma atividade, conheça o conteúdo, a supervisão e as responsabilidades envolvidas.",
+      "organizacao": "A preparação de uma atividade pode aproximar organização e o segundo tema. Combine uma entrega pequena com responsáveis, materiais e prazos definidos.",
+      "comunicacao": "Uma entrega de comunicação pode aproximar expressão e o segundo tema. Entenda quem receberá a mensagem e quais orientações da comunidade precisam ser respeitadas.",
+      "apoio": "Uma tarefa de bastidores pode se conectar ao segundo tema. Conhecer o processo completo ajuda a perceber quais partes despertam interesse e quais exigem preparação específica.",
+      "coordenacao": "Uma iniciativa pequena pode reunir coordenação e o segundo tema. O interesse por articular pessoas deve ser acompanhado de clareza sobre responsabilidade, supervisão e disponibilidade."
+    },
+    "dimensions": {
+      "acolhimento": {
+        "label": "Acolhimento e relacionamento",
+        "reflection": "Que tipo de contato com pessoas você gostaria de conhecer, com quais limites e acompanhamento?",
+        "high": {
+          "reading": "Você declarou maior interesse por receber pessoas, criar contato e perceber necessidades de quem chega. Isso oferece um tema para conhecer as atividades de acolhimento da comunidade e observar quais partes dessa convivência atraem você.",
+          "opportunity": "Uma participação inicial acompanhada pode ajudar a explorar recepção, orientação e encaminhamento, com limites claros sobre o que cabe a cada pessoa.",
+          "attention": "Interesse em acolher não autoriza aconselhamento ou manejo de situações para as quais você não foi preparado. Conheça os procedimentos e a quem recorrer."
+        },
+        "middle": {
+          "reading": "Seu interesse por acolhimento ficou em uma região intermediária. Certas formas de contato podem atrair você mais do que outras, conforme o público, o ambiente ou o tempo disponível.",
+          "opportunity": "Conheça uma atividade concreta e combine uma participação breve, com apoio. Observe como você se sente antes, durante e depois da experiência.",
+          "attention": "Não interprete a média como falta de hospitalidade ou cuidado. O questionário trata de interesse por atividades, sem avaliar sua vida de fé ou suas relações."
+        },
+        "low": {
+          "reading": "Você declarou menor interesse pelas atividades de acolhimento apresentadas. Isso não mede seu cuidado com as pessoas nem seu valor para a comunidade; outras formas de contribuir podem despertar mais curiosidade.",
+          "opportunity": "Se quiser conhecer essa área, observe uma equipe antes de assumir tarefas. Procure entender o fluxo e as alternativas de participação.",
+          "attention": "Evite assumir uma função apenas por sentir obrigação a partir do resultado. Converse sobre sua disponibilidade e sobre o tipo de contribuição que deseja experimentar."
+        }
+      },
+      "ensino": {
+        "label": "Ensino e formação",
+        "reflection": "Qual conteúdo ou formato de aprendizagem desperta curiosidade e de que preparo você precisaria?",
+        "high": {
+          "reading": "Você declarou maior interesse por preparar conteúdos, explicar temas e acompanhar aprendizagem. Isso sugere curiosidade por conhecer como uma comunidade organiza atividades de formação e quais responsabilidades fazem parte delas.",
+          "opportunity": "Uma contribuição breve e supervisionada pode ajudar a experimentar preparação, explicação e escuta de dúvidas, com retorno de quem acompanha a atividade.",
+          "attention": "Interesse não equivale a preparo de conteúdo ou autorização para ensinar. Conheça a orientação da comunidade, a faixa etária atendida e os limites da função."
+        },
+        "middle": {
+          "reading": "Seu interesse por ensino e formação ficou em uma região intermediária. Você pode se aproximar de alguns assuntos ou formatos e preferir outras formas de participação em situações diferentes.",
+          "opportunity": "Experimente colaborar com a preparação de um material ou acompanhar uma atividade antes de assumir a condução de um encontro.",
+          "attention": "Não confunda conforto para falar com preparo para ensinar. A aprendizagem envolve planejamento, escuta e acompanhamento, além da apresentação de conteúdo."
+        },
+        "low": {
+          "reading": "Você declarou menor interesse por ensino e formação neste momento. Isso não mede seu conhecimento, sua fé ou sua capacidade de aprender; indica menor atração pelas atividades apresentadas.",
+          "opportunity": "Se um tema específico despertar curiosidade, converse sobre uma colaboração pequena de bastidores ou sobre observar o trabalho da equipe de formação.",
+          "attention": "Evite transformar o resultado em uma limitação permanente. O interesse pode mudar quando você conhece outros públicos, temas e formatos de contribuição."
+        }
+      },
+      "organizacao": {
+        "label": "Organização de atividades",
+        "reflection": "Qual etapa de uma atividade você gostaria de ajudar a preparar e quanto tempo pode oferecer?",
+        "high": {
+          "reading": "Você declarou maior interesse por planejar etapas, acompanhar informações e apoiar a logística de atividades. A leitura sugere curiosidade por contribuir com os processos que ajudam uma ação da comunidade a acontecer.",
+          "opportunity": "Uma tarefa com objetivo, materiais e prazo definidos pode ajudar a conhecer o fluxo de preparação e sua relação com as pessoas que participarão.",
+          "attention": "Interesse por organizar não exige assumir tudo. Combine responsabilidades e canais de comunicação, especialmente quando há orçamento ou decisões fora da sua autonomia."
+        },
+        "middle": {
+          "reading": "Seu interesse por organização de atividades ficou em uma região intermediária. Algumas tarefas de planejamento podem atrair você, enquanto outras etapas de acompanhamento ou logística podem ter menos apelo.",
+          "opportunity": "Participe de uma preparação pequena e registre quais etapas gostaria de repetir, quais exigiram apoio e quanto tempo foi necessário.",
+          "attention": "Não use a média para avaliar compromisso com a comunidade. Disponibilidade, experiência e clareza da tarefa precisam ser consideradas separadamente."
+        },
+        "low": {
+          "reading": "Você declarou menor interesse por planejar e acompanhar atividades na forma apresentada. Isso não demonstra falta de responsabilidade; pode indicar preferência por outras formas de contribuir.",
+          "opportunity": "Se quiser conhecer a área, assuma uma tarefa delimitada com instruções claras e um ponto de apoio, antes de considerar uma responsabilidade contínua.",
+          "attention": "Evite aceitar coordenação de logística sem entender tempo e recursos necessários. Uma participação sustentável precisa respeitar seus compromissos e limites."
+        }
+      },
+      "comunicacao": {
+        "label": "Comunicação e expressão",
+        "reflection": "Qual linguagem de comunicação você gostaria de experimentar e quem orientaria sua primeira entrega?",
+        "high": {
+          "reading": "Você declarou maior interesse por contribuir com textos, imagens, mensagens e expressão artística. Isso sugere curiosidade pela forma como a comunidade compartilha informações e dá expressão às suas atividades.",
+          "opportunity": "Experimente uma entrega pequena com público, objetivo e orientação definidos. Peça retorno sobre clareza, adequação da mensagem e processo de produção.",
+          "attention": "Interesse em comunicar não autoriza publicar em nome da comunidade. Combine aprovação, uso de imagens e cuidados com informações de outras pessoas."
+        },
+        "middle": {
+          "reading": "Seu interesse por comunicação e expressão ficou em uma região intermediária. Certas linguagens podem atrair você mais do que outras, como texto, imagem, produção ou participação em atividades artísticas.",
+          "opportunity": "Conheça dois tipos de tarefa e escolha uma colaboração inicial compatível com sua experiência e o tempo que consegue oferecer.",
+          "attention": "Não reduza a área à exposição pública. Há atividades de preparação e apoio que podem oferecer experiências diferentes das funções mais visíveis."
+        },
+        "low": {
+          "reading": "Você declarou menor interesse pelas atividades de comunicação e expressão apresentadas. Isso não avalia sua criatividade ou sua capacidade de conversar, apenas o interesse por essas formas de serviço.",
+          "opportunity": "Se uma possibilidade específica despertar curiosidade, observe o fluxo de produção e converse sobre uma tarefa curta, com orientação.",
+          "attention": "Evite comparar sua participação com a visibilidade de outras funções. Diferentes contribuições têm responsabilidades e rotinas próprias."
+        }
+      },
+      "apoio": {
+        "label": "Apoio prático e bastidores",
+        "reflection": "Que tarefa de apoio faz sentido para você conhecer e quais orientações precisaria receber antes?",
+        "high": {
+          "reading": "Você declarou maior interesse por preparar espaços, cuidar de materiais e apoiar necessidades concretas. A leitura sugere curiosidade pelo trabalho de bastidores que torna uma atividade possível e acolhedora para quem participa.",
+          "opportunity": "Acompanhe uma equipe em uma tarefa específica e conheça as orientações, os materiais e o fluxo de apoio antes de assumir responsabilidades.",
+          "attention": "Disposição para ajudar não substitui treinamento ou cuidados de segurança. Combine limites e não assuma atividades técnicas sem a preparação necessária."
+        },
+        "middle": {
+          "reading": "Seu interesse por apoio prático ficou em uma região intermediária. Algumas tarefas podem atrair você mais do que outras, dependendo do esforço, da frequência e do ambiente da atividade.",
+          "opportunity": "Experimente uma colaboração breve e observe o que gostou de fazer, qual apoio precisou e como a tarefa se ajustou à sua disponibilidade.",
+          "attention": "Não interprete a média como disposição para qualquer demanda. Entenda a atividade concreta e converse sobre condições e limites antes de assumir um compromisso."
+        },
+        "low": {
+          "reading": "Você declarou menor interesse por tarefas de apoio prático e bastidores neste momento. Isso não mede generosidade ou disponibilidade moral; outras atividades podem fazer mais sentido para você.",
+          "opportunity": "Se houver curiosidade, conheça uma tarefa curta e acessível antes de avaliar uma participação recorrente. Pergunte sobre preparo e frequência.",
+          "attention": "Evite tratar o resultado como recusa a colaborar. O objetivo é encontrar uma participação consciente, compatível com interesse, capacidade e condições reais."
+        }
+      },
+      "coordenacao": {
+        "label": "Coordenação de iniciativas",
+        "reflection": "Que responsabilidade pequena você gostaria de acompanhar antes de pensar em coordenar uma iniciativa?",
+        "high": {
+          "reading": "Você declarou maior interesse por articular pessoas e acompanhar iniciativas de serviço. Isso oferece um tema para conhecer como as equipes distribuem responsabilidades, constroem acordos e acompanham suas atividades.",
+          "opportunity": "Uma tarefa pequena, com supervisão e equipe definida, permite explorar a rotina de coordenação e perceber como ela se ajusta à sua disponibilidade.",
+          "attention": "Interesse em coordenar não certifica preparo para liderar. Conheça o processo de acompanhamento, os limites de decisão e as responsabilidades da função."
+        },
+        "middle": {
+          "reading": "Seu interesse por coordenação ficou em uma região intermediária. Você pode se interessar por algumas etapas de uma iniciativa e preferir contribuir de outra maneira em situações diferentes.",
+          "opportunity": "Observe uma equipe e experimente acompanhar uma etapa delimitada, com apoio de uma pessoa responsável. Registre o que gostaria de aprender.",
+          "attention": "Não interprete a média como prontidão ou impedimento para liderar. A participação depende também de preparo, confiança construída e critérios da comunidade."
+        },
+        "low": {
+          "reading": "Você declarou menor interesse por coordenar iniciativas na forma apresentada. Isso não define sua capacidade de liderança nem reduz o valor de outras contribuições possíveis na comunidade.",
+          "opportunity": "Se quiser conhecer a atividade, acompanhe alguém responsável por uma tarefa pequena e pergunte sobre rotina, decisões e tempo necessário.",
+          "attention": "Evite assumir ou rejeitar uma função apenas com base na pontuação. Considere sua fase de vida, disponibilidade, preparo e o diálogo com a comunidade."
+        }
+      }
+    }
+  }
+}

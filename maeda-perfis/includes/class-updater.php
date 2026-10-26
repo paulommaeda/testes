@@ -24,7 +24,7 @@ final class Updater
         $cached = get_transient(self::CACHE);
         if ($cached !== false) return is_array($cached) && !empty($cached['version']) ? $cached : null;
         $response = wp_remote_get('https://api.github.com/repos/' . self::REPO . '/releases/latest',[
-            'timeout'=>10,'redirection'=>2,'headers'=>['Accept'=>'application/vnd.github+json','User-Agent'=>'Maeda-Perfis/' . PMP_VERSION],
+            'timeout'=>10,'redirection'=>2,'headers'=>['Accept'=>'application/vnd.github+json','User-Agent'=>'Nortume/' . PMP_VERSION],
         ]);
         if (is_wp_error($response) || wp_remote_retrieve_response_code($response) !== 200) {
             set_transient(self::CACHE,[],HOUR_IN_SECONDS);
@@ -77,7 +77,7 @@ final class Updater
     {
         if ($action !== 'plugin_information' || ($args->slug ?? '') !== 'maeda-perfis') return $result;
         $release = self::release();
-        return (object) ['name'=>'Maeda Perfis','slug'=>'maeda-perfis','version'=>$release['version'] ?? PMP_VERSION,
+        return (object) ['name'=>'Nortume','slug'=>'maeda-perfis','version'=>$release['version'] ?? PMP_VERSION,
             'author'=>'Paulo Maeda','homepage'=>'https://github.com/' . self::REPO,
             'requires'=>$release['requires'] ?? '6.5','requires_php'=>$release['requires_php'] ?? '8.1',
             'download_link'=>$release['package'] ?? '',

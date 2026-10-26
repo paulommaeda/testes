@@ -15,12 +15,14 @@ final class Plugin
         Frontend::register();
         Rest::register();
         Privacy::register();
+        Site::register();
+        if (get_option('pmp_brand') === 'Maeda Perfis') update_option('pmp_brand', 'Nortume', false);
         add_action('pmp_expire_invitations', [Invitations::class, 'expire']);
         if (class_exists('WooCommerce')) {
             Commerce::register();
         } else {
             add_action('admin_notices', static function () {
-                echo '<div class="notice notice-warning"><p>Maeda Perfis: instale e ative o WooCommerce para vender os testes e usar a área de conta.</p></div>';
+                echo '<div class="notice notice-warning"><p>Nortume: instale e ative o WooCommerce para vender os testes e usar a área de conta.</p></div>';
             });
         }
         if (!wp_next_scheduled('pmp_expire_invitations')) {
@@ -51,6 +53,7 @@ final class Plugin
 
     public static function deactivate(): void
     {
+        if (get_option('pmp_site_enabled')) Site::disable();
         wp_clear_scheduled_hook('pmp_expire_invitations');
         flush_rewrite_rules();
     }

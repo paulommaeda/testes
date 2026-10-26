@@ -43,7 +43,7 @@ final class Scoring
         }
         $maximum = max(array_column($dimensions, 'mean'));
         $highlights = array_values(array_map(static fn($d) => $d['key'], array_filter($dimensions, static fn($d) => $d['mean'] === $maximum)));
-        return [
+        $result = [
             'module_key' => $module['key'], 'module_version' => $module['version'],
             'title' => $module['title'], 'pilot' => true,
             'reference' => $module['reference'] ?? 'Instrumento autoral',
@@ -51,5 +51,7 @@ final class Scoring
             'question_count' => count($answers), 'scale_min' => 1, 'scale_max' => 5,
             'interpretation' => 'As médias descrevem suas respostas neste questionário. Não são percentis, diagnóstico, previsão de desempenho ou medida de aptidão. Use o relatório para refletir sobre experiências e planejar próximos passos.',
         ];
+        $result['narrative'] = Narrative::build($result, $module, $answers);
+        return $result;
     }
 }

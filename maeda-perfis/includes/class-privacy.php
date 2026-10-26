@@ -8,16 +8,16 @@ final class Privacy
     public static function register(): void
     {
         add_filter('wp_privacy_personal_data_exporters',static function ($exporters) {
-            $exporters['maeda-perfis'] = ['exporter_friendly_name'=>'Maeda Perfis','callback'=>[self::class,'export']];
+            $exporters['maeda-perfis'] = ['exporter_friendly_name'=>'Nortume','callback'=>[self::class,'export']];
             return $exporters;
         });
         add_filter('wp_privacy_personal_data_erasers',static function ($erasers) {
-            $erasers['maeda-perfis'] = ['eraser_friendly_name'=>'Maeda Perfis','callback'=>[self::class,'erase']];
+            $erasers['maeda-perfis'] = ['eraser_friendly_name'=>'Nortume','callback'=>[self::class,'erase']];
             return $erasers;
         });
         add_action('admin_init',static function () {
             if (function_exists('wp_add_privacy_policy_content')) {
-                wp_add_privacy_policy_content('Maeda Perfis','<h2>Testes de perfil</h2><p>Armazenamos as respostas, a versão do questionário, o relatório, as datas de aplicação e o vínculo com a compra. Nas aplicações por convite, o participante é informado antes do aceite de que o relatório final será compartilhado com quem adquiriu aquela aplicação. O comprador não tem acesso às respostas individuais nem a outros testes do participante. Os e-mails de convite e conclusão contêm links para a conta, e o site registra eventos de liberação e acesso operacional. Defina aqui os responsáveis pelo tratamento, a finalidade, os prazos de retenção, os canais para exercício de direitos e o fluxo específico para menores, quando aplicável.</p>');
+                wp_add_privacy_policy_content('Nortume','<h2>Testes de perfil</h2><p>Armazenamos as respostas, a versão do questionário, o relatório, as datas de aplicação e o vínculo com a compra. Nas aplicações por convite, o participante é informado antes do aceite de que o relatório final será compartilhado com quem adquiriu aquela aplicação. O comprador não tem acesso às respostas individuais nem a outros testes do participante. Os e-mails de convite e conclusão contêm links para a conta, e o site registra eventos de liberação e acesso operacional. Defina aqui os responsáveis pelo tratamento, a finalidade, os prazos de retenção, os canais para exercício de direitos e o fluxo específico para menores, quando aplicável.</p>');
             }
         });
     }

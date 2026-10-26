@@ -8,10 +8,11 @@ final class Admin
     public static function register(): void
     {
         add_action('admin_menu',static function () {
-            add_menu_page('Maeda Perfis','Maeda Perfis','manage_pmp','maeda-perfis',[self::class,'dashboard'],'dashicons-chart-area',56);
+            add_menu_page('Nortume','Nortume','manage_pmp','maeda-perfis',[self::class,'dashboard'],'dashicons-chart-area',56);
             add_submenu_page('maeda-perfis','Módulos e questionários','Módulos','manage_pmp','pmp-modules',[self::class,'modules']);
             add_submenu_page('maeda-perfis','Créditos e aplicações','Créditos e aplicações','manage_pmp','pmp-credits',[self::class,'credits']);
             add_submenu_page('maeda-perfis','Configurações','Configurações','manage_pmp','pmp-settings',[self::class,'settings']);
+            add_submenu_page('maeda-perfis','Páginas do site','Páginas do site','manage_pmp','pmp-site',[self::class,'site']);
         });
         add_action('admin_post_pmp_admin',[self::class,'handle']);
         add_action('admin_enqueue_scripts',static function ($hook) {
@@ -24,7 +25,7 @@ final class Admin
     private static function open(string $title): void
     {
         if (!current_user_can('manage_pmp')) wp_die('Acesso não permitido.');
-        echo '<div class="wrap pmp-admin"><p class="pmp-eyebrow">MAEDA PERFIS · ADMINISTRAÇÃO</p><h1>' . esc_html($title) . '</h1>';
+        echo '<div class="wrap pmp-admin"><p class="pmp-eyebrow">NORTUME · ADMINISTRAÇÃO</p><h1>' . esc_html($title) . '</h1>';
         if (!empty($_GET['pmp_message']) && is_string($_GET['pmp_message'])) {
             echo '<div class="notice notice-' . (empty($_GET['pmp_error']) ? 'success' : 'error') . '"><p>' . esc_html(sanitize_text_field(wp_unslash($_GET['pmp_message']))) . '</p></div>';
         }
@@ -49,7 +50,7 @@ final class Admin
         self::form('seed_products');
         submit_button('Criar produtos iniciais em rascunho','primary','submit',false);
         echo '</form><p>Serão preparados produtos com 1, 5 e 10 aplicações de cada módulo, sem preço definido. A ação pode ser repetida sem duplicar os produtos iniciais.</p></div>';
-        echo '<div class="pmp-admin-card"><h2>Página e atalhos</h2><p><a class="button" target="_blank" rel="noopener" href="' . esc_url(Plugin::url()) . '">Abrir área dos participantes</a> <a class="button" href="' . esc_url(admin_url('edit.php?post_type=product')) . '">Produtos do WooCommerce</a></p><p>Shortcodes: <code>[maeda_perfis]</code> e <code>[testes_perfil]</code>. Para uma página apenas de catálogo, use <code>[maeda_perfis view="catalog"]</code>.</p></div>';
+        echo '<div class="pmp-admin-card"><h2>Seu site Nortume</h2><p>Home, loja, páginas de produto, carrinho, checkout e landing page de lançamento com a identidade Nortume.</p><p><a class="button button-primary" href="' . esc_url(admin_url('admin.php?page=pmp-site')) . '">Preparar páginas do site</a> <a class="button" target="_blank" rel="noopener" href="' . esc_url(Plugin::url()) . '">Área dos participantes</a> <a class="button" href="' . esc_url(admin_url('edit.php?post_type=product')) . '">Produtos do WooCommerce</a></p><p>Área de testes: <code>[nortume_perfis]</code>. Os shortcodes antigos continuam funcionando.</p></div>';
         $events = $wpdb->get_results('SELECT * FROM ' . Database::table('events') . ' ORDER BY id DESC LIMIT 20',ARRAY_A);
         echo '<div class="pmp-admin-card"><h2>Atividade recente</h2><table class="widefat striped"><thead><tr><th>Data UTC</th><th>Evento</th><th>Registro</th></tr></thead><tbody>';
         foreach ($events as $event) echo '<tr><td>' . esc_html($event['created_at']) . '</td><td>' . esc_html($event['event_key']) . '</td><td>#' . (int) $event['object_id'] . '</td></tr>';
@@ -117,9 +118,34 @@ final class Admin
         self::open('Configurações');
         echo '<div class="pmp-admin-card">';
         self::form('settings');
-        echo '<table class="form-table"><tr><th><label for="pmp-brand">Nome exibido</label></th><td><input class="regular-text" id="pmp-brand" name="brand" maxlength="60" value="' . esc_attr(get_option('pmp_brand','Maeda Perfis')) . '" required></td></tr><tr><th><label for="pmp-days">Validade dos convites</label></th><td><input id="pmp-days" type="number" name="invite_days" min="1" max="90" value="' . (int) get_option('pmp_invite_days',7) . '"> dias<p class="description">A expiração de um convite pendente devolve o crédito. Os créditos não têm expiração automática nesta versão.</p></td></tr><tr><th>Remoção de dados</th><td><label><input type="checkbox" name="delete_data" value="1" ' . checked((bool) get_option('pmp_delete_data'),true,false) . '> Apagar os dados do plugin ao excluí-lo pelo WordPress</label><p class="description">Desativar o plugin preserva os dados. A exclusão também preserva os dados, salvo se esta opção estiver marcada.</p></td></tr></table>';
+        echo '<table class="form-table"><tr><th><label for="pmp-brand">Nome exibido</label></th><td><input class="regular-text" id="pmp-brand" name="brand" maxlength="60" value="' . esc_attr(get_option('pmp_brand','Nortume')) . '" required></td></tr><tr><th><label for="pmp-days">Validade dos convites</label></th><td><input id="pmp-days" type="number" name="invite_days" min="1" max="90" value="' . (int) get_option('pmp_invite_days',7) . '"> dias<p class="description">A expiração de um convite pendente devolve o crédito. Os créditos não têm expiração automática nesta versão.</p></td></tr><tr><th>Remoção de dados</th><td><label><input type="checkbox" name="delete_data" value="1" ' . checked((bool) get_option('pmp_delete_data'),true,false) . '> Apagar os dados do plugin ao excluí-lo pelo WordPress</label><p class="description">Desativar o plugin preserva os dados. A exclusão também preserva os dados, salvo se esta opção estiver marcada.</p></td></tr></table>';
         submit_button('Salvar configurações');
         echo '</form></div><div class="pmp-admin-card"><h2>Atualizações pelo GitHub</h2><p>Origem: <a href="https://github.com/paulommaeda/testes" target="_blank" rel="noopener">paulommaeda/testes</a>. O atualizador consulta releases públicas com o arquivo <code>maeda-perfis-VERSÃO.zip</code> anexado. Para instalar automaticamente, habilite as atualizações automáticas na lista de plugins do WordPress.</p><p>Os dados dos participantes ficam no banco do seu WordPress. Eles não são enviados ao GitHub.</p></div><div class="pmp-admin-card"><h2>Privacidade e envio de e-mails</h2><p>O plugin participa das ferramentas de exportação e remoção de dados pessoais do WordPress. Revise a política de privacidade e os prazos de retenção da sua operação. O envio usa <code>wp_mail</code>; confirme a entrega com a configuração de e-mails da sua hospedagem.</p><p>Antes de atender menores, defina o fluxo de autorização dos responsáveis e revise os instrumentos para a faixa etária. Esta primeira versão não implementa uma coleta específica de autorização de responsáveis.</p></div></div>';
+    }
+
+    public static function site(): void
+    {
+        self::open('Páginas do site Nortume');
+        $pages = (array) get_option('pmp_site_pages', []);
+        echo '<div class="pmp-admin-card"><h2>Identidade e navegação em um só lugar</h2><p>Prepare a home, a loja, a landing page de lançamento, o carrinho e o checkout. A página individual de cada produto de teste recebe a mesma identidade, com os formulários do WooCommerce.</p><p>A ação abaixo cria as páginas que faltam, publica essas novas páginas e seleciona a home e as páginas de loja, carrinho e checkout nas configurações do WordPress e do WooCommerce. Páginas existentes não são apagadas e o conteúdo das páginas Nortume já criadas não é sobrescrito. A seleção anterior é guardada para restauração.</p>';
+        self::form('site_install');
+        submit_button($pages ? 'Ativar páginas Nortume / completar páginas ausentes' : 'Criar e ativar páginas Nortume', 'primary', 'submit', false);
+        echo '</form><p>O checkout preparado usa o shortcode nativo <code>[woocommerce_checkout]</code>, compatível com os campos, cupons e métodos de pagamento configurados no WooCommerce. Produtos e preços são os cadastrados na sua loja.</p><p>A configuração de visibilidade do WooCommerce é preservada. Se sua loja estiver no modo “Em breve”, revise <a href="' . esc_url(admin_url('admin.php?page=wc-settings&tab=site-visibility')) . '">WooCommerce → Configurações → Visibilidade do site</a> quando desejar abrir o acesso público.</p></div>';
+        if ($pages) {
+            echo '<div class="pmp-admin-card"><h2>Suas páginas</h2><table class="widefat striped"><thead><tr><th>Página</th><th>Situação</th><th>Ações</th></tr></thead><tbody>';
+            foreach (['home'=>'Home','shop'=>'Loja','launch'=>'LP de lançamento','cart'=>'Carrinho','checkout'=>'Checkout'] as $key=>$label) {
+                $id = (int) ($pages[$key] ?? 0);
+                echo '<tr><td>' . esc_html($label) . '</td><td>' . esc_html($id ? (get_post_status($id) ?: 'Ausente') : 'Ausente') . '</td><td>';
+                if ($id && get_post($id)) echo '<a class="button button-small" target="_blank" rel="noopener" href="' . esc_url(get_permalink($id)) . '">Abrir</a> <a class="button button-small" href="' . esc_url(get_edit_post_link($id)) . '">Editar página</a>';
+                echo '</td></tr>';
+            }
+            echo '</tbody></table><p>Shortcodes: <code>[nortume_home]</code>, <code>[nortume_loja]</code> e <code>[nortume_lancamento]</code>. Você pode acrescentar conteúdo pelo editor do WordPress. Para alterar a estrutura completa, substitua o shortcode pelo conteúdo desejado.</p></div>';
+        }
+        if (get_option('pmp_site_enabled')) {
+            echo '<div class="pmp-admin-card"><h2>Restaurar a seleção anterior</h2><p>Desativa os templates públicos Nortume e restaura a seleção anterior de páginas onde ela ainda aponta para as páginas criadas pelo plugin. Os conteúdos, produtos, compras e resultados são preservados.</p>';
+            self::form('site_disable'); submit_button('Restaurar páginas anteriores', 'secondary', 'submit', false); echo '</form></div>';
+        }
+        echo '</div>';
     }
 
     public static function handle(): void
@@ -130,9 +156,16 @@ final class Admin
         $page = 'maeda-perfis';
         $message = 'Operação concluída.';
         $error = false;
-        if ($task === 'settings') {
+        if ($task === 'site_install') {
+            $page = 'pmp-site';
+            $result = Site::install();
+            if (is_wp_error($result)) { $error = true; $message = $result->get_error_message(); }
+            else $message = 'Páginas Nortume preparadas e ativadas. Confira a home, os produtos publicados e seu checkout.';
+        } elseif ($task === 'site_disable') {
+            $page = 'pmp-site'; Site::disable(); $message = 'Templates públicos desativados e seleções anteriores restauradas quando aplicável.';
+        } elseif ($task === 'settings') {
             $page = 'pmp-settings';
-            update_option('pmp_brand',substr(sanitize_text_field(wp_unslash($_POST['brand'] ?? 'Maeda Perfis')),0,60),false);
+            update_option('pmp_brand',substr(sanitize_text_field(wp_unslash($_POST['brand'] ?? 'Nortume')),0,60),false);
             update_option('pmp_invite_days',max(1,min(90,absint($_POST['invite_days'] ?? 7))),false);
             update_option('pmp_delete_data',!empty($_POST['delete_data']),false);
             $message = 'Configurações salvas.';

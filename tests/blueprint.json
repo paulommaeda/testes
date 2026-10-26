@@ -4,6 +4,6 @@
   "steps": [
     {"step":"defineWpConfigConsts","consts":{"PMP_TESTING":true,"WP_DEBUG":true,"WP_DEBUG_DISPLAY":false,"WP_MEMORY_LIMIT":"512M","WP_MAX_MEMORY_LIMIT":"512M"}},
     {"step":"installPlugin","pluginData":{"resource":"wordpress.org/plugins","slug":"woocommerce"},"options":{"activate":true}},
-    {"step":"runPHP","code":"<?php require '/wordpress/wp-load.php'; update_option('woocommerce_onboarding_profile', ['completed'=>true]); update_option('permalink_structure','/%postname%/'); update_option('blogname','Maeda Perfis — Desenvolvimento'); update_option('woocommerce_currency','BRL'); update_option('woocommerce_default_country','BR:PR'); update_option('woocommerce_enable_myaccount_registration','yes'); flush_rewrite_rules();"}
+    {"step":"runPHP","code":"<?php require '/wordpress/wp-load.php'; update_option('woocommerce_onboarding_profile', ['completed'=>true]); update_option('permalink_structure','/%postname%/'); update_option('blogname','Nortume — Desenvolvimento'); update_option('woocommerce_currency','BRL'); update_option('woocommerce_default_country','BR:PR'); update_option('woocommerce_enable_myaccount_registration','yes'); flush_rewrite_rules();"}
   ]
 }

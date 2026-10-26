@@ -131,11 +131,18 @@ final class Assessments
         if (!$participant && !$buyer && !user_can($user, 'manage_pmp')) {
             return Plugin::error('access', 'Relatório não encontrado.', 404);
         }
+        $result = json_decode($attempt['result'], true);
+        if (empty($result['narrative'])) {
+            // Relatórios anteriores ganham a leitura a partir da cópia original, nunca do módulo atual.
+            $result['narrative'] = Narrative::build($result, json_decode($attempt['snapshot'], true), json_decode($attempt['answers'], true) ?: []);
+            global $wpdb;
+            $wpdb->update(Database::table('attempts'), ['result'=>wp_json_encode($result)], ['id'=>$id,'result'=>$attempt['result']]);
+        }
         return [
             'id'=>$id,'participant_name'=>self::user_name((int) $attempt['user_id']),
             'buyer_name'=>self::user_name((int) $attempt['buyer_id']),
             'completed_at'=>$attempt['completed_at'], 'started_at'=>$attempt['started_at'],
-            'is_own'=>$participant, 'result'=>json_decode($attempt['result'], true),
+            'is_own'=>$participant, 'result'=>$result,
         ];
     }
 

@@ -1,18 +1,41 @@
-# Maeda Perfis
+# Nortume
 
-Plugin WordPress com testes de perfil, venda de aplicações por módulo no WooCommerce, convites individuais e relatórios em formato de dashboard.
+Plugin WordPress com testes de perfil, venda de aplicações por módulo no WooCommerce, convites individuais, relatórios detalhados e páginas comerciais na identidade Nortume.
 
-**Versão inicial 0.1.0.** Os quatro bancos de perguntas são autorais e estão em fase piloto. A plataforma funciona com esses bancos, mas sua disponibilização não demonstra validade psicométrica. Revise os instrumentos e a finalidade de uso antes de comercializar aplicações. O plugin não é uma implementação oficial de Everything DiSC nem de PEAKS.
+**Versão 0.2.0.** Os quatro bancos de perguntas são autorais e estão em fase piloto. A plataforma funciona com esses bancos, mas sua disponibilização não demonstra validade psicométrica. Revise os instrumentos e a finalidade de uso antes de comercializar aplicações. O plugin não é uma implementação oficial de Everything DiSC nem de PEAKS.
 
 ## Instalação
 
 1. Ative o WooCommerce no WordPress.
-2. Baixe **maeda-perfis-0.1.0.zip** na seção [Releases](https://github.com/paulommaeda/testes/releases). Use o arquivo do plugin anexado à versão, e não o arquivo “Source code”.
+2. Baixe **maeda-perfis-0.2.0.zip** na seção [Releases](https://github.com/paulommaeda/testes/releases). Use o arquivo do plugin anexado à versão, e não o arquivo “Source code”.
 3. Acesse **Plugins → Adicionar plugin → Enviar plugin**, selecione o ZIP e ative.
-4. Abra **Maeda Perfis** no painel. O plugin cria a página **Meus perfis**, com o shortcode `[maeda_perfis]`.
+4. Abra **Nortume** no painel. O plugin cria a página **Meus perfis**, com o shortcode `[maeda_perfis]`.
 5. Clique em **Criar produtos iniciais em rascunho**. Serão criados produtos com 1, 5 e 10 aplicações de cada módulo, sem preços inventados.
 6. Defina os preços, revise a descrição e publique os produtos que deseja oferecer.
-7. Confira os e-mails transacionais e faça uma compra com seu gateway em modo de testes antes de abrir vendas.
+7. Em **Nortume → Páginas do site**, clique em **Criar e ativar páginas Nortume** para preparar a home, a loja, o carrinho, o checkout e a LP de lançamento.
+8. Confira os e-mails transacionais e faça uma compra com seu gateway em modo de testes antes de abrir vendas.
+
+Quem já instalou a versão 0.1.0 pode instalar o novo ZIP como atualização ou usar o atualizador do WordPress. A pasta técnica `maeda-perfis`, as tabelas, os produtos, as contas e os shortcodes existentes são mantidos. O nome padrão anterior passa a ser Nortume; nomes personalizados nas configurações são preservados.
+
+## Site e lançamento
+
+A instalação das páginas é uma ação explícita do administrador. Ela publica somente as páginas que faltam, seleciona a home estática e configura as páginas de loja, carrinho e checkout no WooCommerce. A seleção anterior é guardada. Repetir a ação não sobrescreve conteúdo editado nem duplica as páginas registradas. Se um slug já pertence a outra página, o WordPress escolhe outro slug para a página nova.
+
+| Página | Conteúdo e comportamento |
+| --- | --- |
+| Home | Proposta Nortume, quatro módulos, exemplo ilustrativo do relatório, públicos, processo, marca e perguntas frequentes. |
+| Loja | Produtos publicados vinculados aos módulos, preços reais e filtros por módulo e quantidade de aplicações. |
+| Produto | Identidade própria para produtos de testes, conteúdo do módulo, aplicações do pacote, formulário nativo de compra e opções de outros pacotes. Imagem cadastrada no produto tem preferência sobre a ilustração padrão. |
+| Carrinho e checkout | Templates do WooCommerce dentro da identidade Nortume. Cupons, variações, campos e gateways continuam sob controle do WooCommerce. O checkout criado usa `[woocommerce_checkout]`. |
+| Lançamento | Página própria de apresentação e conversão, com exemplo de relatório, conteúdo da entrega, módulos e links para pacotes e preços da loja. Sem depoimentos, prazos ou descontos fictícios. |
+
+As páginas podem ser abertas e editadas nessa mesma tela do painel. Os shortcodes geram a estrutura comercial; é possível acrescentar conteúdo pelo editor ou substituir o shortcode por conteúdo próprio. A página de produto é um template dinâmico, e seus dados comerciais são editados no WooCommerce. O template Nortume se aplica aos produtos vinculados ao plugin; outros produtos conservam o template do tema.
+
+A configuração **WooCommerce → Configurações → Visibilidade do site** é preservada. Em lojas novas com o modo “Em breve” ativo, conclua sua preparação e selecione a visibilidade pública quando desejar abrir as vendas.
+
+**Restaurar páginas anteriores** desativa os templates públicos e restaura as configurações que ainda apontam para as páginas Nortume. Alterações posteriores feitas pelo proprietário são respeitadas. Desativar o plugin também restaura essa seleção. As páginas, os produtos e os resultados permanecem no banco.
+
+Fontes de sistema, CSS, JavaScript, ícones e gráficos locais dispensam serviços externos para apresentar o site. Os exemplos visuais têm identificação explícita de dados fictícios. O estilo atende temas clássicos e de blocos por meio de um template de página próprio; a ponte de hooks de blocos do WooCommerce é desativada somente nessas páginas, que usam os hooks clássicos. Teste personalizações de tema, construtor e gateway da instalação antes de abrir vendas.
 
 Também é possível configurar um produto existente: em **Dados do produto → Geral**, selecione o módulo e a quantidade de aplicações por unidade. Os produtos de testes são virtuais. Variações podem definir módulo e quantidade próprios, com herança do produto principal quando os campos ficam vazios.
 
@@ -27,7 +50,7 @@ Também é possível configurar um produto existente: em **Dados do produto → 
 
 DISC e PEAKS são referências conceituais para o desenvolvimento; os questionários, a pontuação e os textos incluídos são próprios. O módulo de interesses profissionais organiza atividades com referência conceitual ao RIASEC, sem reproduzir o O*NET Interest Profiler. O módulo ministerial explora interesses de serviço e não determina dons, chamado ou maturidade espiritual.
 
-O editor de módulos fica no painel, em **Maeda Perfis → Módulos**. O esquema JSON é validado antes do salvamento. Ao modificar conteúdo, altere o campo `version`. Cada aplicação recebe uma cópia do instrumento ao ser liberada, e o relatório concluído preserva a pontuação e os textos daquela versão.
+O editor de módulos fica no painel, em **Nortume → Módulos**. O esquema JSON é validado antes do salvamento. Ao modificar conteúdo, altere o campo `version`. Cada aplicação recebe uma cópia do instrumento ao ser liberada, e o relatório concluído preserva a pontuação e os textos daquela versão.
 
 ## Compras, créditos e convites
 
@@ -48,6 +71,12 @@ As áreas **Meus testes**, **Pacotes e convites** e **Resultados dos participant
 ## Relatórios e acesso
 
 Os dashboards exibem radar, barras por dimensão, médias em escala de 1 a 5, identificação da versão e sugestões de reflexão. Os gráficos são SVG locais, com textos alternativos e valores visíveis; não dependem de bibliotecas em CDN ou serviços externos. O botão **Imprimir / salvar PDF** usa a impressão do navegador, com folha de estilos própria.
+
+O relatório inclui **resumo detalhado do perfil**, leitura integrada, interpretação de cada dimensão, possibilidades para explorar, pontos de atenção, perguntas de reflexão e experiências em 7, 14 e 30 dias. Há 63 leituras condicionais para as 21 dimensões dos quatro instrumentos. O motor usa médias, diferenças entre médias e variação das respostas; não envia respostas a um serviço de IA.
+
+As faixas textuais são descritivas da escala: abaixo de 2,5; de 2,5 a menos de 3,5; de 3,5 a 5. Diferença de até 0,35 entre a maior e a menor média é qualificada como proximidade. São decisões editoriais explícitas, sem significado diagnóstico ou corte validado. Empates são preservados, uma maior média baixa não é descrita como intensidade alta e uma menor média ainda alta não é tratada como fragilidade. Carreira e serviço recebem linguagem de interesses.
+
+Novas conclusões gravam a versão da leitura junto ao resultado. Relatórios antigos recebem esse conteúdo na primeira consulta autorizada, usando as respostas e o instrumento originalmente preservados. A leitura é gravada uma vez; consultas seguintes não reescrevem o conteúdo. Instrumentos editados com dimensões diferentes recebem uma leitura descritiva baseada nos próprios textos, evitando aplicar a semântica de outro questionário.
 
 O participante acessa seus relatórios. Quem comprou acessa o relatório final de cada aplicação que financiou, após sua conclusão; não recebe respostas individuais nem outros resultados da conta do participante. O compartilhamento é informado antes do aceite do convite. A administração do plugin tem uma permissão específica, concedida inicialmente apenas aos administradores do site.
 
@@ -74,6 +103,10 @@ Uma aplicação concluída bloqueada por reembolso deixa de estar disponível ao
 ## Shortcodes
 
 ```text
+[nortume_perfis]
+[nortume_home]
+[nortume_loja]
+[nortume_lancamento]
 [maeda_perfis]
 [testes_perfil]
 [maeda_perfis view="catalog"]

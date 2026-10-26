@@ -7,7 +7,7 @@ final class Mail
 {
     public static function send(string $email, string $subject, string $heading, string $body, string $url, string $button): bool
     {
-        $site = wp_specialchars_decode(get_bloginfo('name'), ENT_QUOTES);
+        $site = Site::brand();
         $message = '<!doctype html><html lang="pt-BR"><body style="margin:0;background:#f4f5fa;padding:32px 16px;font-family:Arial,sans-serif;color:#172033">'
             . '<div style="max-width:560px;margin:auto;background:#fff;border-radius:16px;padding:32px">'
             . '<p style="font-size:13px;color:#6550ce;font-weight:bold">' . esc_html($site) . '</p>'
