@@ -122,6 +122,7 @@ final class Site
 
     public static function route(): ?string
     {
+        if (Frontend::is_app_page()) return null;
         if (is_admin() || !get_option('pmp_site_enabled')) return null;
         foreach ((array) get_option('pmp_site_pages', []) as $key=>$id) if ($id && is_page((int) $id)) return $key;
         if (function_exists('is_shop') && is_shop()) return 'shop';
@@ -136,6 +137,11 @@ final class Site
     {
         global $post;
         if (!self::route() && !(is_object($post) && (has_shortcode($post->post_content, 'nortume_home') || has_shortcode($post->post_content, 'nortume_loja') || has_shortcode($post->post_content, 'nortume_lancamento')))) return;
+        self::enqueue_assets();
+    }
+
+    public static function enqueue_assets(): void
+    {
         wp_enqueue_style('nortume-site', PMP_URL . 'assets/site.css', [], PMP_VERSION);
         wp_enqueue_script('nortume-site', PMP_URL . 'assets/site.js', [], PMP_VERSION, true);
         wp_script_add_data('nortume-site', 'strategy', 'defer');
@@ -159,15 +165,21 @@ final class Site
     public static function header(string $route): void
     {
         $launch = $route === 'launch';
+        $account_page = $route === 'account';
         $shop = self::url('shop');
-        $account = function_exists('wc_get_page_permalink') ? wc_get_page_permalink('myaccount') : Plugin::url(['pmp_view'=>'login']);
+        $account = Plugin::url(is_user_logged_in() ? [] : ['pmp_view'=>'login']);
+        $pages = (array)get_option('pmp_site_pages', []);
+        $has_home = !empty($pages['home']) && get_post_status((int)$pages['home']) === 'publish';
+        $has_launch = !empty($pages['launch']) && get_post_status((int)$pages['launch']) === 'publish';
         $count = function_exists('WC') && WC()->cart ? WC()->cart->get_cart_contents_count() : 0;
-        echo '<a class="nt-skip" href="#nt-main">Ir para o conteúdo</a>';
+        echo '<a class="nt-skip" href="' . ($account_page ? '#pmp-page-content' : '#nt-main') . '">Ir para o conteúdo</a>';
         if ($route === 'home') echo '<div class="nt-announcement">Um novo olhar. Um próximo passo. <a href="' . esc_url(self::url('launch')) . '">Conheça a Nortume ' . self::icon('arrow') . '</a></div>';
         echo '<header class="nt-header"><div class="nt-wrap nt-header-inner"><a class="nt-wordmark" href="' . esc_url(self::url()) . '" aria-label="' . esc_attr(self::brand()) . ' início"><span class="nt-symbol">' . self::icon() . '</span>' . esc_html(self::brand()) . '<span class="nt-wordmark-dot">.</span></a>';
         echo '<button class="nt-menu-toggle" type="button" aria-expanded="false" aria-controls="nt-navigation"><span></span><span></span><span class="nt-sr-only">Abrir menu</span></button>';
-        echo '<nav class="nt-navigation" id="nt-navigation" aria-label="Navegação principal"><a href="' . esc_url($shop) . '" ' . ($route === 'shop' ? 'aria-current="page"' : '') . '>Explorar testes</a><a href="' . esc_url(self::url() . '#como-funciona') . '">Como funciona</a><a href="' . esc_url(Plugin::url()) . '">Meus resultados</a>' . (!$launch ? '<a href="' . esc_url(self::url('launch')) . '">Lançamento</a>' : '') . '</nav>';
-        echo '<div class="nt-header-actions"><a class="nt-account" href="' . esc_url($account) . '">' . self::icon('user') . '<span>Minha conta</span></a><a class="nt-cart-link" href="' . esc_url(function_exists('wc_get_cart_url') ? wc_get_cart_url() : self::url('cart')) . '" aria-label="Carrinho, ' . (int) $count . ' itens">' . self::icon('bag') . ($count ? '<span>' . (int) $count . '</span>' : '') . '</a></div></div></header>';
+        echo '<nav class="nt-navigation" id="nt-navigation" aria-label="Navegação principal">' . ($account_page ? '<a href="' . esc_url(self::url()) . '">Início</a>' : '') . '<a href="' . esc_url($shop) . '" ' . ($route === 'shop' ? 'aria-current="page"' : '') . '>Explorar testes</a>' . ($has_home ? '<a href="' . esc_url(self::url() . '#como-funciona') . '">Como funciona</a>' : '') . (!$account_page ? '<a href="' . esc_url(Plugin::url(['pmp_view'=>'tests'])) . '">Meus resultados</a>' : '') . (!$launch && $has_launch ? '<a href="' . esc_url(self::url('launch')) . '">Lançamento</a>' : '') . '</nav>';
+        $name = is_user_logged_in() ? wp_get_current_user()->display_name : '';
+        $avatar = $name ? strtoupper(function_exists('mb_substr') ? mb_substr($name,0,1) : substr($name,0,1)) : '';
+        echo '<div class="nt-header-actions"><a class="nt-account' . ($account_page ? ' nt-account-active' : '') . '" href="' . esc_url($account) . '" ' . ($account_page ? 'aria-current="page"' : '') . '>' . ($account_page && $name ? '<span class="nt-account-caption"><small>Minha conta</small><span data-nt-account-name>' . esc_html($name) . '</span></span><span class="nt-account-avatar" data-nt-account-avatar>' . esc_html($avatar) . '</span>' : self::icon('user') . '<span>Minha conta</span>') . '</a><a class="nt-cart-link" href="' . esc_url(function_exists('wc_get_cart_url') ? wc_get_cart_url() : self::url('cart')) . '" aria-label="Carrinho, ' . (int) $count . ' itens">' . self::icon('bag') . ($count ? '<span>' . (int) $count . '</span>' : '') . '</a></div></div></header>';
     }
 
     public static function footer(): void

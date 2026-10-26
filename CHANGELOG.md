@@ -1,5 +1,16 @@
 # Histórico de versões
 
+## 0.3.0
+
+- Conta Nortume unificada: pedidos recentes, dados pessoais, testes, pacotes e resultados na mesma interface.
+- Menu superior do site integrado ao dashboard, com identificação do cliente e acesso ao carrinho.
+- Listagem de pedidos com paginação, detalhe da compra, totais e notas destinadas ao cliente.
+- Continuação de pagamento no checkout nativo e cancelamento confirmado de pedidos ainda elegíveis.
+- Edição de dados pessoais, e-mail, senha e endereço de faturamento com validação no servidor.
+- Login e cadastro com apresentação própria, mantendo o processamento nativo e os convites existentes.
+- Direcionamento dos links Minha conta e endpoints antigos para as seções da Nortume, com restauração da configuração anterior na desativação.
+- Renovação de nonce e link de saída após troca de senha, mantendo a sessão.
+
 ## 0.2.0
 
 - Marca Nortume no plugin, na administração, nos e-mails e nos dashboards, mantendo a identidade técnica da instalação para atualização com preservação dos dados.

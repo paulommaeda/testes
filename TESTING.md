@@ -1,4 +1,4 @@
-# Verificação da versão 0.2.0
+# Verificação da versão 0.3.0
 
 ## Ambiente
 
@@ -37,7 +37,7 @@ Foram aprovadas **63 verificações**: 48 do fluxo de aplicações e 15 de pági
 
 ## Interface no navegador
 
-Foram aprovadas **94 verificações no Chromium**: 20 do aplicativo, 68 das páginas e fluxo comercial e 6 da revisão final de produto e impressão, com inspeção visual das telas:
+Na entrega 0.2, foram aprovadas **94 verificações no Chromium**: 20 do aplicativo, 68 das páginas e fluxo comercial e 6 da revisão final de produto e impressão, com inspeção visual das telas:
 
 - Login real do WordPress e carregamento dos indicadores da conta.
 - Relatórios sem rolagem horizontal em 320, 390, 768 e 1440 pixels.
@@ -62,6 +62,12 @@ Foram aprovadas **94 verificações no Chromium**: 20 do aplicativo, 68 das pág
 ## Interpretação textual
 
 Os testes isolados também verificam leituras baixas, intermediárias e altas, empates, médias próximas, respostas divergentes na mesma dimensão, separação entre interesses e comportamentos, cobertura das dimensões e adaptação a instrumentos editados. Esses testes avaliam regras de software e coerência das condições; não demonstram validade psicológica.
+
+## Conta Nortume (0.3.0)
+
+Foram executadas 28 verificações adicionais de integração para a conta, além das 63 anteriores. Elas cobrem seleção da página própria, paginação de pedidos, isolamento entre compradores, notas destinadas ao cliente, pagamento pendente, cancelamento permitido e bloqueio de pedidos pagos, validação de dados pessoais, e-mail, senha e faturamento, preservação do histórico e restauração da seleção de página.
+
+A conferência da conta incluiu 43 verificações no navegador, com cinco verificações adicionais para o ajuste de largura da visão geral. Os formulários de conta foram verificados em 320, 390, 768 e 1440 pixels, com inspeção da visão geral, pedidos, detalhe e dados pessoais. A verificação interativa cobre menu superior, paginação, encaminhamento dos endereços antigos, edição de perfil e faturamento, troca de senha com continuidade de sessão, saída, entrada e convite pelo cadastro próprio. Nenhuma tela padrão de Minha conta do WooCommerce é usada nesses fluxos.
 
 ## Escopo e limites
 

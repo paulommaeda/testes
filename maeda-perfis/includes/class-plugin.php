@@ -16,6 +16,7 @@ final class Plugin
         Rest::register();
         Privacy::register();
         Site::register();
+        Account::configure();
         if (get_option('pmp_brand') === 'Maeda Perfis') update_option('pmp_brand', 'Nortume', false);
         add_action('pmp_expire_invitations', [Invitations::class, 'expire']);
         if (class_exists('WooCommerce')) {
@@ -48,12 +49,14 @@ final class Plugin
             }
         }
         Frontend::endpoints();
+        Account::configure();
         flush_rewrite_rules();
     }
 
     public static function deactivate(): void
     {
         if (get_option('pmp_site_enabled')) Site::disable();
+        Account::restore();
         wp_clear_scheduled_hook('pmp_expire_invitations');
         flush_rewrite_rules();
     }

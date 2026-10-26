@@ -17,5 +17,6 @@ try {
   for(const item of pages.checks || [])console.log((item.passed?'PASS ':'FAIL ')+item.name);
   console.log(JSON.stringify({success:pages.success,site_checks:pages.checks?.length,error:pages.error}));
   if(!pages.success)process.exitCode=1;
+  if(pages.success){const account=await(await fetch(site.serverUrl+'/pmp-tests/account-integration.php')).json();for(const item of account.checks || [])console.log((item.passed?'PASS ':'FAIL ')+item.name);console.log(JSON.stringify({success:account.success,account_checks:account.checks?.length,error:account.error}));if(!account.success)process.exitCode=1;}
  }
 }finally{await site[Symbol.asyncDispose]();}

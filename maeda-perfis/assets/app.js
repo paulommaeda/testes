@@ -8,6 +8,7 @@
   const date = value => { if (!value) return ''; const d = new Date(value.replace(' ','T') + 'Z'); return Number.isNaN(d.valueOf()) ? '' : d.toLocaleDateString('pt-BR'); };
   const paths = {
     north:'m12 2 8 19-8-5-8 5 8-19Zm0 0v14',
+    receipt:'M5 3h14v18l-3-2-4 2-4-2-3 2V3Zm3 5h8M8 12h8M8 16h4',
     grid:'M3 3h7v7H3zM14 3h7v7h-7zM3 14h7v7H3zM14 14h7v7h-7z',
     compass:'M12 3a9 9 0 1 0 0 18 9 9 0 0 0 0-18Zm4 5-2 6-6 2 2-6 6-2Z',
     users:'M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2M9 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8ZM17 4a4 4 0 0 1 0 8M22 21v-2a4 4 0 0 0-3-3.9',
@@ -49,7 +50,7 @@
 
   class App {
     constructor(root, config) {
-      this.root=root;this.cfg=config;this.data=null;this.view=config.view;this.attempt=null;this.report=null;this.index=0;this.review=false;this.dirty=false;this.savePromise=null;this.saveTimer=null;this.saveError=null;this.teamFilter='all';this.busy=new Set();
+      this.root=root;this.cfg=config;this.authHTML=root.querySelector('.pmp-auth-template')?.innerHTML || '';this.order=null;this.ordersList=null;this.accountSettings=null;this.data=null;this.view=config.view;this.attempt=null;this.report=null;this.index=0;this.review=false;this.dirty=false;this.savePromise=null;this.saveTimer=null;this.saveError=null;this.teamFilter='all';this.busy=new Set();
       root.addEventListener('click',event=>this.click(event));
       root.addEventListener('change',event=>this.change(event));
       root.addEventListener('submit',event=>this.submit(event));
@@ -72,7 +73,7 @@
             const refreshURL=new URL(this.cfg.ajax_url);refreshURL.searchParams.set('action','pmp_refresh_nonce');
             const refresh=await fetch(refreshURL.toString(),{credentials:'same-origin',cache:'no-store'});
             const fresh=await refresh.json();
-            if(refresh.ok&&fresh.success&&fresh.data?.nonce){this.cfg.nonce=fresh.data.nonce;return await this.api(path,body,true);}
+            if(refresh.ok&&fresh.success&&fresh.data?.nonce){this.cfg.nonce=fresh.data.nonce;if(fresh.data.logout_url)this.cfg.logout_url=fresh.data.logout_url;return await this.api(path,body,true);}
           }
           const error=new Error(result.message || 'Não foi possível concluir a operação.');error.code=result.code;error.status=response.status;throw error;
         }
@@ -82,7 +83,7 @@
     }
     async init() {
       if(this.cfg.logged_in){try{this.data=await this.api('state');}catch(error){this.renderError(error);return;}}
-      await this.route(true);
+      try{await this.route(true);}catch(error){this.renderError(error);}
     }
     async route(initial=false) {
       const query=new URL(location.href).searchParams;
@@ -92,48 +93,98 @@
       if(this.cfg.logged_in && reportId){await this.openReport(reportId,false);return;}
       if(this.cfg.logged_in && attemptId){await this.openAttempt(attemptId,false);return;}
       const view=query.get('pmp_view') || this.cfg.view || 'dashboard';
-      this.view=['dashboard','catalog','tests','packages','team','login'].includes(view)?view:'dashboard';
-      if(!this.cfg.logged_in && this.view!=='login') this.view='catalog';
+      this.view=['dashboard','catalog','tests','packages','team','login','orders','account'].includes(view)?view:'dashboard';
+      if(!this.cfg.logged_in && !['login','catalog'].includes(this.view)) this.view='login';
+      if(this.cfg.logged_in){
+        const orderId=Number(query.get('pmp_order') || (initial?this.cfg.order_id:0));
+        if(orderId){await this.openOrder(orderId,false);return;}
+        if(this.view==='orders')this.ordersList=await this.api('account/orders?page='+Math.max(1,Number(query.get('pmp_orders_page') || (initial?this.cfg.orders_page:1))));
+        if(this.view==='account')this.accountSettings=await this.api('account');
+      }
       this.render();
     }
     url(view, id=0) {
-      const url=new URL(location.href);['pmp_view','pmp_attempt','pmp_report','pmp_invite'].forEach(k=>url.searchParams.delete(k));
-      if(view==='report')url.searchParams.set('pmp_report',id);else if(view==='attempt')url.searchParams.set('pmp_attempt',id);else url.searchParams.set('pmp_view',view);
+      const url=new URL(this.cfg.base_url);['pmp_view','pmp_attempt','pmp_report','pmp_invite','pmp_order','pmp_orders_page'].forEach(k=>url.searchParams.delete(k));
+      if(view==='report')url.searchParams.set('pmp_report',id);else if(view==='attempt')url.searchParams.set('pmp_attempt',id);else if(view==='order'){url.searchParams.set('pmp_view','orders');url.searchParams.set('pmp_order',id);}else url.searchParams.set('pmp_view',view);
       return url;
     }
     async go(view) {
       if(this.attempt && (this.dirty || this.savePromise)) await this.flush();
-      this.view=view;this.attempt=null;this.report=null;this.review=false;
-      if(this.cfg.logged_in) this.data=await this.api('state');
+      this.view=view;this.attempt=null;this.report=null;this.order=null;this.review=false;this.cfg.notices=[];
+      if(this.cfg.logged_in){
+        this.data=await this.api('state');
+        if(view==='orders')this.ordersList=this.data.orders;
+        if(view==='account')this.accountSettings=await this.api('account');
+      }
       history.pushState({},'',this.url(view));this.render();this.focusMain();
     }
     focusMain(){this.root.querySelector('.pmp-main')?.scrollIntoView({block:'start',behavior:'instant'});}
     focusQuestion(){const heading=this.root.querySelector('.pmp-question');if(heading){heading.focus({preventScroll:true});heading.scrollIntoView({block:'start',behavior:'instant'});}}
     nav() {
-      const items=[['dashboard','grid','Visão geral'],['tests','file','Meus testes'],['packages','box','Pacotes e convites'],['team','chart','Resultados'],['catalog','compass','Explorar módulos']];
-      return `<nav class="pmp-nav" aria-label="Navegação dos testes">${items.filter(x=>this.cfg.logged_in || x[0]==='catalog').map(([key,ico,label])=>`<button type="button" data-action="nav" data-id="${key}" class="${this.view===key?'is-active':''}" ${this.view===key?'aria-current="page"':''}>${icon(ico)}<span>${label}</span>${key==='tests'&&this.data?.stats.pending?`<span class="pmp-nav-count">${number(this.data.stats.pending)}</span>`:''}</button>`).join('')}</nav>`;
+      const items=[['dashboard','grid','Visão geral'],['orders','receipt','Meus pedidos'],['tests','file','Meus testes'],['packages','box','Pacotes e convites'],['team','chart','Resultados'],['account','user','Dados da conta'],['catalog','compass','Explorar módulos']];
+      return `<nav class="pmp-nav" aria-label="Navegação da minha conta">${items.filter(x=>this.cfg.logged_in || x[0]==='catalog').map(([key,ico,label])=>`<button type="button" data-action="nav" data-id="${key}" class="${(this.view===key || key==='orders'&&this.view==='order')?'is-active':''}" ${this.view===key||key==='orders'&&this.view==='order'?'aria-current="page"':''}>${icon(ico)}<span>${label}</span>${key==='tests'&&this.data?.stats.pending?`<span class="pmp-nav-count">${number(this.data.stats.pending)}</span>`:''}</button>`).join('')}${this.cfg.logged_in?`<a class="pmp-nav-logout" href="${esc(this.cfg.logout_url)}">${icon('logout')}<span>Sair da conta</span></a>`:''}</nav>`;
     }
     shell(content) {
       const name=this.data?.user.name || '', brand=this.cfg.brand;
-      return `<header class="pmp-header"><a class="pmp-brand" href="${esc(this.cfg.base_url)}" aria-label="${esc(brand)} início"><span class="pmp-brand-mark">${icon('north')}</span><span><span class="pmp-brand-name">${esc(brand)}</span><span class="pmp-header-subtitle">Clareza para o próximo passo</span></span></a><a class="pmp-account-link" href="${esc(this.cfg.logged_in?this.cfg.account_url:this.cfg.login_url)}"><span class="pmp-account-name">${esc(name || 'Entrar na minha conta')}</span><span class="pmp-avatar">${this.cfg.logged_in?esc(initials(name)):icon('user')}</span></a></header>
-      <div class="pmp-layout"><aside class="pmp-sidebar">${this.nav()}<div class="pmp-sidebar-bottom">${icon('sparkles')}Cada descoberta pode orientar<br>um próximo passo.${this.cfg.logged_in?`<a href="${esc(this.cfg.logout_url)}">Sair da conta</a>`:''}</div></aside><div class="pmp-main" id="${esc(this.root.id)}-main">${content}<footer class="pmp-footer"><span>${esc(brand)} · Seu espaço de desenvolvimento</span><a href="${esc(this.cfg.account_url)}">Minha conta ${icon('arrow')}</a></footer></div></div>`;
+      return `${this.cfg.external_header?'':`<header class="pmp-header"><a class="pmp-brand" href="${esc(this.cfg.base_url)}" aria-label="${esc(brand)} início"><span class="pmp-brand-mark">${icon('north')}</span><span><span class="pmp-brand-name">${esc(brand)}</span><span class="pmp-header-subtitle">Clareza para o próximo passo</span></span></a><a class="pmp-account-link" href="${esc(this.cfg.logged_in?this.cfg.account_url:this.cfg.login_url)}"><span class="pmp-account-name">${esc(name || 'Entrar na minha conta')}</span><span class="pmp-avatar">${this.cfg.logged_in?esc(initials(name)):icon('user')}</span></a></header>`}
+      <div class="pmp-layout"><aside class="pmp-sidebar">${this.nav()}<div class="pmp-sidebar-bottom">${icon('sparkles')}Cada descoberta pode orientar<br>um próximo passo.</div></aside><div class="pmp-main" id="${esc(this.root.id)}-main">${(this.cfg.notices || []).map(n=>`<div class="pmp-notice ${n.type==='error'?'pmp-error':''}" role="${n.type==='error'?'alert':'status'}">${esc(n.text)}</div>`).join('')}${content}<footer class="pmp-footer"><span>${esc(brand)} · Seu espaço de desenvolvimento</span><a href="${esc(this.cfg.account_url)}">Minha conta ${icon('arrow')}</a></footer></div></div>`;
     }
     render() {
-      const views={dashboard:()=>this.dashboard(),catalog:()=>this.catalog(),tests:()=>this.tests(),packages:()=>this.packages(),team:()=>this.team(),attempt:()=>this.attemptView(),report:()=>this.reportView(),invitation:()=>this.invitation(),login:()=>`<div class="pmp-heading"><div><p class="pmp-eyebrow">SEU ESPAÇO PESSOAL</p><h1>Vamos começar pela sua conta.</h1><p>Cadastre-se ou entre no formulário abaixo para comprar e responder aos testes.</p></div></div>`};
-      this.root.innerHTML=this.shell((views[this.view] || views.dashboard)());
+      const views={dashboard:()=>this.dashboard(),catalog:()=>this.catalog(),tests:()=>this.tests(),packages:()=>this.packages(),team:()=>this.team(),attempt:()=>this.attemptView(),report:()=>this.reportView(),orders:()=>this.ordersView(),order:()=>this.orderView(),account:()=>this.accountView(),invitation:()=>this.invitation(),login:()=>`<div class="pmp-heading"><div><p class="pmp-eyebrow">SEU ESPAÇO PESSOAL</p><h1>Vamos começar pela sua conta.</h1><p>Acesse seus pedidos, dados da conta, testes e resultados em um só lugar.</p></div></div>`};
+      this.root.innerHTML=this.shell((views[this.view] || views.dashboard)()+(!this.cfg.logged_in&&['login','invitation'].includes(this.view)?this.authHTML:''));
+      this.syncHeader();
     }
     renderError(error) {this.root.innerHTML=this.shell(`<div class="pmp-notice pmp-error" role="alert">${esc(error.message)}</div>${btn('Tentar novamente','reload')}`);}
     dashboard() {
       const name=this.data?.user.first_name || 'você', stats=this.data?.stats || {};
       const pending=(this.data?.tests.items || []).filter(a=>['assigned','in_progress'].includes(a.status)&&a.credit_status!=='revoked');
       const completed=(this.data?.tests.items || []).filter(a=>a.status==='completed');
-      return `<div class="pmp-heading"><div><p class="pmp-eyebrow">UM MOMENTO PARA VOCÊ</p><h1>Olá, ${esc(name)}.</h1><p>Acompanhe suas descobertas e escolha seu próximo passo.</p></div>${badge('Meu espaço')}</div>
-      <section class="pmp-hero"><div><p class="pmp-eyebrow">CONHEÇA SUAS PREFERÊNCIAS</p><h2>Seu jeito de agir.<br>Novas possibilidades.</h2><p>Explore suas respostas, reconheça experiências e transforme a reflexão em ações para o cotidiano.</p>${btn(pending.length?'Continuar meus testes':'Explorar os módulos','nav','pmp-btn-light',pending.length?'tests':'catalog')}</div><div class="pmp-hero-visual" aria-hidden="true"><svg viewBox="0 0 240 190"><circle cx="120" cy="95" r="72" fill="none" stroke="#515673" stroke-dasharray="3 5"/><circle cx="120" cy="95" r="49" fill="none" stroke="#515673"/><path d="m120 27 65 68-65 65-66-65Z" fill="#8f7be5" fill-opacity=".1" stroke="#a18be8"/><path d="m120 45 48 50-48 39-43-39Z" fill="#b5a2ff" fill-opacity=".17" stroke="#b5a2ff" stroke-width="2"/><circle cx="120" cy="45" r="5" fill="#c6b7ff"/><circle cx="168" cy="95" r="5" fill="#9bc7c8"/><circle cx="120" cy="134" r="5" fill="#d2b7d4"/><circle cx="77" cy="95" r="5" fill="#d7c69d"/><path d="M105 95h30M120 80v30" stroke="#d5caff" stroke-width="1.5"/></svg></div></section>
+      return `<div class="pmp-heading"><div><p class="pmp-eyebrow">MINHA CONTA NORTUME</p><h1>Olá, ${esc(name)}.</h1><p>Acompanhe suas compras, atualize seus dados e continue suas descobertas.</p></div>${badge('Meu espaço')}</div>
+      <section class="pmp-hero pmp-account-hero"><div><p class="pmp-eyebrow">TUDO NO SEU ESPAÇO</p><h2>Suas compras.<br>Suas próximas descobertas.</h2><p>Dos pedidos aos resultados: acompanhe cada passo da sua experiência Nortume.</p><div class="pmp-hero-account-actions">${btn('Ver meus pedidos','nav','pmp-btn-light','orders')}${btn('Editar meus dados','nav','pmp-btn-account-outline','account')}</div></div><div class="pmp-account-hero-summary"><span>${icon('receipt')}</span><strong>${number(this.data?.orders?.total || 0)}</strong><p>${Number(this.data?.orders?.total || 0)===1?'pedido na sua conta':'pedidos na sua conta'}</p></div></section>
+      ${this.accountOverview()}
       <div class="pmp-stat-grid">${this.stat('Relatórios pessoais',stats.completed || 0,'check','Testes que você concluiu')}${this.stat('Para responder',stats.pending || 0,'file','Liberados na sua conta')}${this.stat('Créditos disponíveis',this.total('available'),'box','Distribuídos por módulo')}${this.stat('Convites pendentes',this.total('reserved'),'mail','Aguardando o aceite')}</div>
       ${pending.length?`<div class="pmp-section-top"><h2>Seu próximo teste</h2>${btn('Ver todos','nav','pmp-btn-secondary pmp-btn-small','tests')}</div><div class="pmp-test-list">${pending.slice(0,2).map(a=>this.testRow(a)).join('')}</div>`:''}
       <div class="pmp-section-top"><h2>Quatro formas de se conhecer melhor</h2><button type="button" class="pmp-link-button" data-action="nav" data-id="catalog">Explorar ${icon('arrow')}</button></div><div class="pmp-module-grid">${(this.data?.modules || []).map(m=>this.moduleCard(m)).join('')}</div>
       ${completed.length?`<div class="pmp-section-top"><h2>Suas descobertas recentes</h2></div><div class="pmp-test-list">${completed.slice(0,2).map(a=>this.testRow(a)).join('')}</div>`:''}`;
     }
+    syncHeader() {
+      const name=this.data?.user?.name;
+      if(!name)return;
+      document.querySelectorAll('[data-nt-account-name]').forEach(node=>{node.textContent=name;});
+      document.querySelectorAll('[data-nt-account-avatar]').forEach(node=>{node.textContent=initials(name).slice(0,1);});
+    }
+    orderStatus(order) {return badge(order.status_label,({completed:'green',processing:'blue','on-hold':'amber',pending:'amber',cancelled:'gray',refunded:'gray',failed:'red'})[order.status] || 'gray');}
+    orderRow(order,compact=false) {
+      const item=order.items[0], more=Math.max(0,order.items.length-1);
+      return `<article class="pmp-order-row ${compact?'is-compact':''}"><span class="pmp-order-icon">${icon('receipt')}</span><div class="pmp-order-info"><button type="button" class="pmp-link-button" data-action="order" data-id="${order.id}">Pedido #${esc(order.number)}</button><p>${esc(order.date)}${item?' · '+esc(item.name)+(more?' + '+number(more):''):''}</p></div><div class="pmp-order-value"><strong>${esc(order.total)}</strong>${this.orderStatus(order)}</div>${!compact?btn('Ver pedido','order','pmp-btn-secondary pmp-btn-small',order.id):''}</article>`;
+    }
+    accountOverview() {
+      const profile=this.data?.account || {}, orders=this.data?.orders?.items || [];
+      return `<div class="pmp-account-overview"><section class="pmp-card pmp-account-orders"><div class="pmp-card-top"><div><h2>Meus pedidos</h2><p>Suas compras mais recentes.</p></div>${btn('Ver todos','nav','pmp-btn-secondary pmp-btn-small','orders')}</div>${orders.length?orders.slice(0,3).map(order=>this.orderRow(order,true)).join(''):`<div class="pmp-account-empty"><p>Você ainda não tem pedidos por aqui.</p><a class="pmp-link-button" href="${esc(this.cfg.shop_url)}">Explorar os testes ${icon('arrow')}</a></div>`}</section><section class="pmp-card pmp-account-data"><div class="pmp-card-top"><div><h2>Dados da conta</h2><p>Seu acesso e suas informações.</p></div><span class="pmp-account-data-icon">${icon('user')}</span></div><dl><div><dt>Nome</dt><dd>${esc([profile.first_name,profile.last_name].filter(Boolean).join(' ') || profile.display_name || this.data?.user?.name)}</dd></div><div><dt>E-mail de acesso</dt><dd>${esc(profile.email || this.data?.user?.email)}</dd></div>${profile.billing?.phone?`<div><dt>Telefone de faturamento</dt><dd>${esc(profile.billing.phone)}</dd></div>`:''}</dl>${btn('Editar meus dados','nav','pmp-btn-secondary','account')}</section></div>`;
+    }
+    ordersView() {
+      const list=this.ordersList || this.data?.orders || {items:[]};
+      return `<div class="pmp-heading"><div><p class="pmp-eyebrow">SUAS COMPRAS NA NORTUME</p><h1>Meus pedidos</h1><p>Veja o status, os itens e os detalhes de cada compra.</p></div>${badge(number(list.total || 0)+' pedidos')}</div>${list.items.length?`<section class="pmp-card pmp-orders-list">${list.items.map(order=>this.orderRow(order)).join('')}</section>${list.has_more?`<div class="pmp-more">${btn('Carregar mais pedidos','more-orders','pmp-btn-secondary')}</div>`:''}`:empty('Seu primeiro pedido pode começar aqui','As compras feitas com sua conta aparecerão nesta página.',`<a class="pmp-btn" href="${esc(this.cfg.shop_url)}">Conhecer os testes</a>`)}`;
+    }
+    async openOrder(id,push=true) {
+      if(this.attempt&&(this.dirty||this.savePromise))await this.flush();
+      const order=await this.api('account/orders/'+id);
+      this.order=order;this.attempt=null;this.report=null;this.view='order';
+      if(push)history.pushState({},'',this.url('order',id));
+      this.render();if(push)this.focusMain();
+    }
+    orderView() {
+      const order=this.order;if(!order)return '';
+      const applications=order.items.reduce((n,item)=>n+Number(item.applications || 0),0);
+      const available=['processing','completed'].includes(order.status);
+      return `<button type="button" class="pmp-link-button pmp-back" data-action="nav" data-id="orders">${icon('back')}Meus pedidos</button><div class="pmp-heading"><div><p class="pmp-eyebrow">DETALHES DA SUA COMPRA</p><h1>Pedido #${esc(order.number)}</h1><p>Realizado em ${esc(order.date)}${order.payment_method?' · '+esc(order.payment_method):''}</p></div>${this.orderStatus(order)}</div><div class="pmp-order-detail-grid"><section class="pmp-card pmp-order-items"><h2>O que você comprou</h2>${order.items.map(item=>`<article><span class="pmp-order-icon">${icon('box')}</span><div><h3>${esc(item.name)}</h3><p>Quantidade: ${number(item.quantity)}</p>${item.module?`<p>${esc(item.module)}${item.applications?' · '+number(item.applications)+(Number(item.applications)===1?' aplicação':' aplicações')+' no item comprado':''}</p>`:''}${item.meta.map(meta=>`<p class="pmp-order-item-meta">${esc(meta.label)}: ${esc(meta.value)}</p>`).join('')}</div><strong>${esc(item.total)}</strong></article>`).join('')}${applications?`<div class="pmp-order-access"><p>${available?'Seus testes e pacotes liberados podem ser acompanhados na sua conta.':'A liberação dos testes acompanha a confirmação do pagamento e a situação do pedido.'}</p>${btn('Ver meus testes e pacotes','nav','pmp-btn-secondary','packages')}</div>`:''}</section><section class="pmp-card pmp-order-totals"><h2>Resumo do pedido</h2><dl>${order.totals.map(total=>`<div><dt>${esc(total.label)}</dt><dd>${esc(total.value)}</dd></div>`).join('')}</dl>${order.pay_url?`<a class="pmp-btn" href="${esc(order.pay_url)}">Continuar pagamento ${icon('arrow')}</a>`:''}${order.can_cancel?btn('Cancelar pedido','cancel-order','pmp-btn-secondary',order.id):''}</section></div><div class="pmp-order-contact-grid"><section class="pmp-card"><h2>Dados de faturamento</h2><address>${esc(order.billing_address || 'Endereço não informado neste pedido.')}</address><p>${esc(order.email)}</p>${order.phone?`<p>${esc(order.phone)}</p>`:''}</section>${order.shipping_address?`<section class="pmp-card"><h2>Endereço de entrega</h2><address>${esc(order.shipping_address)}</address></section>`:''}${order.notes.length?`<section class="pmp-card pmp-order-notes"><h2>Atualizações do pedido</h2>${order.notes.map(note=>`<article><span>${esc(note.date)}</span><p>${esc(note.text)}</p></article>`).join('')}</section>`:''}</div>`;
+    }
+    accountView() {
+      const profile=this.accountSettings?.profile || this.data?.account || {}, billing=profile.billing || {}, countries=this.accountSettings?.countries || {};
+      const input=(name,label,value='',extra='',scope='profile')=>`<div><label class="pmp-label" for="${this.root.id}-${scope}-${name}">${esc(label)}</label><input class="pmp-input" id="${this.root.id}-${scope}-${name}" name="${name}" value="${esc(value)}" ${extra}></div>`;
+      return `<div class="pmp-heading"><div><p class="pmp-eyebrow">SEU PERFIL E SEU ACESSO</p><h1>Dados da conta</h1><p>Mantenha suas informações atualizadas e gerencie sua senha.</p></div></div><div class="pmp-account-settings"><section class="pmp-card"><h2>Informações pessoais</h2><p class="pmp-settings-intro">Estes são os dados usados no seu acesso à Nortume.</p><form data-form="profile" class="pmp-profile-form"><div class="pmp-form-fields pmp-profile-fields">${input('first_name','Nome',profile.first_name,'autocomplete="given-name" maxlength="100" required')}${input('last_name','Sobrenome',profile.last_name,'autocomplete="family-name" maxlength="100" required')}${input('display_name','Nome de exibição',profile.display_name,'maxlength="100" required')}${input('email','E-mail de acesso',profile.email,'type="email" autocomplete="email" maxlength="100" required')}</div><div class="pmp-password-section"><h3>E-mail e senha</h3><p>Para alterar o e-mail ou a senha, informe sua senha atual. Deixe a nova senha em branco para manter a que você usa.</p><div class="pmp-form-fields pmp-profile-fields">${input('current_password','Senha atual','','type="password" autocomplete="current-password" maxlength="128"')}${input('new_password','Nova senha','','type="password" autocomplete="new-password" minlength="12" maxlength="128"')}${input('confirm_password','Repita a nova senha','','type="password" autocomplete="new-password" minlength="12" maxlength="128"')}</div><p class="pmp-field-help">A nova senha deve ter pelo menos 12 caracteres.</p></div><p class="pmp-form-message" data-form-message role="status" tabindex="-1"></p><button type="submit" class="pmp-btn">Salvar dados da conta</button></form></section><section class="pmp-card"><h2>Endereço de faturamento</h2><p class="pmp-settings-intro">Use os dados que deseja preencher nas próximas compras. Os pedidos anteriores mantêm as informações registradas na compra.</p><form data-form="billing" class="pmp-billing-form"><div class="pmp-form-fields pmp-profile-fields">${input('first_name','Nome',billing.first_name || profile.first_name,'autocomplete="billing given-name" maxlength="100" required','billing')}${input('last_name','Sobrenome',billing.last_name || profile.last_name,'autocomplete="billing family-name" maxlength="100" required','billing')}${input('company','Empresa (opcional)',billing.company,'autocomplete="billing organization" maxlength="100"','billing')}${input('phone','Telefone de faturamento',billing.phone,'type="tel" autocomplete="billing tel" maxlength="50"','billing')}<div><label class="pmp-label" for="${this.root.id}-country">País</label><select class="pmp-input" name="country" id="${this.root.id}-country" autocomplete="billing country" required><option value="">Selecione</option>${Object.entries(countries).map(([key,label])=>`<option value="${esc(key)}" ${billing.country===key?'selected':''}>${esc(label)}</option>`).join('')}</select></div>${input('state','Estado / UF',billing.state,'autocomplete="billing address-level1" maxlength="100"','billing')}${input('postcode','CEP / código postal',billing.postcode,'autocomplete="billing postal-code" maxlength="20"','billing')}${input('city','Cidade',billing.city,'autocomplete="billing address-level2" maxlength="100"','billing')}${input('address_1','Rua e número',billing.address_1,'autocomplete="billing address-line1" maxlength="200"','billing')}${input('address_2','Complemento (opcional)',billing.address_2,'autocomplete="billing address-line2" maxlength="200"','billing')}${input('email','E-mail de faturamento',billing.email || profile.email,'type="email" autocomplete="billing email" maxlength="100" required','billing')}</div><p class="pmp-field-help">O e-mail de faturamento não altera seu e-mail de acesso.</p><p class="pmp-form-message" data-form-message role="status" tabindex="-1"></p><button type="submit" class="pmp-btn pmp-btn-secondary">Salvar endereço de faturamento</button></form></section></div>`;
+    }
+
     stat(label,value,ico,note){return `<div class="pmp-card pmp-stat"><span class="pmp-stat-icon">${icon(ico)}</span><p class="pmp-stat-label">${esc(label)}</p><div class="pmp-stat-number">${number(value)}</div><p class="pmp-stat-note">${esc(note)}</p></div>`;}
     moduleCard(m) {
       const balance=Number(this.data?.balances[m.key]?.available || 0);
@@ -250,17 +301,35 @@
       return this.savePromise;
     }
     async submit(event) {
-      if(!event.target.matches('[data-form="invite"]'))return;
-      event.preventDefault();const form=event.target;if(!form.reportValidity())return;
+      const form=event.target, kind=form.dataset.form;
+      if(!['invite','profile','billing'].includes(kind))return;
+      event.preventDefault();if(!form.reportValidity())return;
       const button=form.querySelector('[type="submit"]');button.disabled=true;
-      try{const data=new FormData(form),result=await this.api('invites',{module:String(data.get('module')),email:String(data.get('email'))});this.data=await this.api('state');this.render();this.toast(result.message);}
-      catch(error){this.toast(error.message);}finally{if(button.isConnected)button.disabled=false;}
+      const fields=Object.fromEntries(new FormData(form).entries());
+      const message=form.querySelector('[data-form-message]');if(message){message.textContent='';message.className='pmp-form-message';}
+      try {
+        let result;
+        if(kind==='invite')result=await this.api('invites',fields);
+        if(kind==='profile')result=await this.api('account/profile',fields);
+        if(kind==='billing')result=await this.api('account/billing',fields);
+        this.data=await this.api('state');
+        if(kind!=='invite'){this.accountSettings=await this.api('account');if(this.accountSettings.logout_url)this.cfg.logout_url=this.accountSettings.logout_url;}
+        this.render();this.toast(result.message);
+        if(kind!=='invite'){
+          const feedback=this.root.querySelector(`[data-form="${kind}"] [data-form-message]`);
+          if(feedback){feedback.textContent=result.message;feedback.classList.add('is-success');}
+        }
+      } catch(error) {
+        // Não conserva senhas em um formulário que retornou erro.
+        form.querySelectorAll('input[type="password"]').forEach(input=>{input.value='';});
+        if(message){message.textContent=error.message;message.classList.add('is-error');message.focus();}else this.toast(error.message);
+      } finally {if(button.isConnected)button.disabled=false;}
     }
     async click(event) {
       const button=event.target.closest('[data-action]');if(!button || !this.root.contains(button))return;
       event.preventDefault();const action=button.dataset.action,id=button.dataset.id || '',key=action+':'+id;
       if(this.busy.has(key))return;this.busy.add(key);
-      const lock=['claim','accept','start','release','complete','resend','cancel','more'].includes(action);if(lock)button.disabled=true;
+      const lock=['claim','accept','start','release','complete','resend','cancel','more','more-orders','cancel-order'].includes(action);if(lock)button.disabled=true;
       try{
         if(action==='nav'){if(id==='catalog')this.catalogModule='';await this.go(id);}
         else if(action==='reload')await this.init();
@@ -269,6 +338,16 @@
         else if(action==='claim'){const result=await this.api('claim',{module:id});this.data=await this.api('state');await this.openAttempt(result.attempt_id);}
         else if(action==='attempt')await this.openAttempt(Number(id));
         else if(action==='report')await this.openReport(Number(id));
+        else if(action==='order')await this.openOrder(Number(id));
+        else if(action==='more-orders'){
+          const current=this.ordersList || this.data.orders;
+          const next=await this.api('account/orders?page='+(current.page+1));
+          this.ordersList={...next,items:[...current.items,...next.items]};this.render();
+        }
+        else if(action==='cancel-order'){
+          if(!window.confirm('Cancelar este pedido ainda não pago?'))return;
+          const result=await this.api('account/orders/'+Number(id)+'/cancel',{});this.order=result.order;this.data=await this.api('state');this.render();this.toast(result.message);
+        }
         else if(action==='filter'){this.teamFilter=id;this.render();}
         else if(action==='auth-scroll')document.querySelector('.pmp-auth')?.scrollIntoView({block:'start',behavior:'smooth'});
         else if(action==='accept'){const consent=Boolean(this.root.querySelector('[name="pmp-sharing"]')?.checked);const result=await this.api('invites/accept',{token:this.cfg.invite_token,consent});this.cfg.invite_token='';this.data=await this.api('state');await this.openAttempt(result.attempt_id);}

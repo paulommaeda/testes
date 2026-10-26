@@ -10,13 +10,19 @@ final class Rest
         add_action('wp_ajax_pmp_refresh_nonce',static function () {
             if (!is_user_logged_in()) wp_send_json_error(['message'=>'Entre novamente na sua conta.'],401);
             nocache_headers();
-            wp_send_json_success(['nonce'=>wp_create_nonce('wp_rest')]);
+            wp_send_json_success(['nonce'=>wp_create_nonce('wp_rest'),'logout_url'=>html_entity_decode(wp_logout_url(Plugin::url(['pmp_view'=>'login'])), ENT_QUOTES, 'UTF-8')]);
         });
         add_action('rest_api_init', static function () {
             $namespace = 'maeda-perfis/v1';
             register_rest_route($namespace, '/catalog', ['methods'=>'GET','callback'=>[self::class,'catalog'],'permission_callback'=>'__return_true']);
             $routes = [
                 '/state'=>['GET',static fn($r) => self::state()],
+                '/account'=>['GET',static fn($r) => ['profile'=>Account::profile(get_current_user_id()),'countries'=>Account::countries(),'logout_url'=>html_entity_decode(wp_logout_url(Plugin::url(['pmp_view'=>'login'])), ENT_QUOTES, 'UTF-8')]],
+                '/account/profile'=>['POST',static fn($r) => Account::save_profile(get_current_user_id(), (array)$r->get_json_params())],
+                '/account/billing'=>['POST',static fn($r) => Account::save_billing(get_current_user_id(), (array)$r->get_json_params())],
+                '/account/orders'=>['GET',static fn($r) => Account::orders(get_current_user_id(), max(1,(int)($r['page'] ?? 1)))],
+                '/account/orders/(?P<id>\d+)'=>['GET',static fn($r) => Account::order((int)$r['id'], get_current_user_id())],
+                '/account/orders/(?P<id>\d+)/cancel'=>['POST',static fn($r) => Account::cancel_order((int)$r['id'], get_current_user_id())],
                 '/records'=>['GET',static fn($r) => self::records(get_current_user_id(), sanitize_key($r['kind'] ?? 'tests'), max(1,(int) ($r['page'] ?? 1)))],
                 '/claim'=>['POST',static fn($r) => Credits::claim(get_current_user_id(),sanitize_key($r['module'] ?? ''))],
                 '/invites'=>['POST',static fn($r) => Invitations::create(get_current_user_id(),sanitize_key($r['module'] ?? ''),(string) ($r['email'] ?? ''))],
@@ -102,6 +108,8 @@ final class Rest
             'tests'=>self::records((int) $user->ID,'tests'),
             'invites'=>self::records((int) $user->ID,'invites'),
             'funded'=>self::records((int) $user->ID,'funded'),
+            'orders'=>Account::orders((int)$user->ID),
+            'account'=>Account::profile((int)$user->ID),
         ]);
     }
 

@@ -2,20 +2,20 @@
 
 Plugin WordPress com testes de perfil, venda de aplicações por módulo no WooCommerce, convites individuais, relatórios detalhados e páginas comerciais na identidade Nortume.
 
-**Versão 0.2.0.** Os quatro bancos de perguntas são autorais e estão em fase piloto. A plataforma funciona com esses bancos, mas sua disponibilização não demonstra validade psicométrica. Revise os instrumentos e a finalidade de uso antes de comercializar aplicações. O plugin não é uma implementação oficial de Everything DiSC nem de PEAKS.
+**Versão 0.3.0.** Os quatro bancos de perguntas são autorais e estão em fase piloto. A plataforma funciona com esses bancos, mas sua disponibilização não demonstra validade psicométrica. Revise os instrumentos e a finalidade de uso antes de comercializar aplicações. O plugin não é uma implementação oficial de Everything DiSC nem de PEAKS.
 
 ## Instalação
 
 1. Ative o WooCommerce no WordPress.
-2. Baixe **maeda-perfis-0.2.0.zip** na seção [Releases](https://github.com/paulommaeda/testes/releases). Use o arquivo do plugin anexado à versão, e não o arquivo “Source code”.
+2. Baixe **maeda-perfis-0.3.0.zip** na seção [Releases](https://github.com/paulommaeda/testes/releases). Use o arquivo do plugin anexado à versão, e não o arquivo “Source code”.
 3. Acesse **Plugins → Adicionar plugin → Enviar plugin**, selecione o ZIP e ative.
-4. Abra **Nortume** no painel. O plugin cria a página **Meus perfis**, com o shortcode `[maeda_perfis]`.
+4. Abra **Nortume** no painel. O plugin cria a página **Minha conta**, com o shortcode `[nortume_perfis]`. Essa área reúne pedidos, dados da conta, testes, pacotes e resultados. O endereço antigo da página é mantido nas atualizações.
 5. Clique em **Criar produtos iniciais em rascunho**. Serão criados produtos com 1, 5 e 10 aplicações de cada módulo, sem preços inventados.
 6. Defina os preços, revise a descrição e publique os produtos que deseja oferecer.
 7. Em **Nortume → Páginas do site**, clique em **Criar e ativar páginas Nortume** para preparar a home, a loja, o carrinho, o checkout e a LP de lançamento.
 8. Confira os e-mails transacionais e faça uma compra com seu gateway em modo de testes antes de abrir vendas.
 
-Quem já instalou a versão 0.1.0 pode instalar o novo ZIP como atualização ou usar o atualizador do WordPress. A pasta técnica `maeda-perfis`, as tabelas, os produtos, as contas e os shortcodes existentes são mantidos. O nome padrão anterior passa a ser Nortume; nomes personalizados nas configurações são preservados.
+Quem já instalou uma versão anterior pode instalar o novo ZIP como atualização ou usar o atualizador do WordPress. A pasta técnica `maeda-perfis`, as tabelas, os produtos, as contas e os shortcodes existentes são mantidos. O nome padrão anterior passa a ser Nortume; nomes personalizados nas configurações são preservados.
 
 ## Site e lançamento
 
@@ -38,6 +38,20 @@ A configuração **WooCommerce → Configurações → Visibilidade do site** é
 Fontes de sistema, CSS, JavaScript, ícones e gráficos locais dispensam serviços externos para apresentar o site. Os exemplos visuais têm identificação explícita de dados fictícios. O estilo atende temas clássicos e de blocos por meio de um template de página próprio; a ponte de hooks de blocos do WooCommerce é desativada somente nessas páginas, que usam os hooks clássicos. Teste personalizações de tema, construtor e gateway da instalação antes de abrir vendas.
 
 Também é possível configurar um produto existente: em **Dados do produto → Geral**, selecione o módulo e a quantidade de aplicações por unidade. Os produtos de testes são virtuais. Variações podem definir módulo e quantidade próprios, com herança do produto principal quando os campos ficam vazios.
+
+## Minha conta Nortume
+
+A área de testes passa a ser a conta completa do cliente, com interface própria e o mesmo menu superior das páginas comerciais. A visão geral mostra compras recentes, dados pessoais e atalhos. O menu inclui **Meus pedidos**, **Dados da conta**, testes, pacotes, resultados e saída.
+
+- **Pedidos:** listagem paginada de todas as compras vinculadas à conta, detalhe dos itens, quantidades, aplicações adquiridas, totais, pagamento e dados registrados na compra. Apenas notas destinadas ao cliente são exibidas.
+- **Pagamento e cancelamento:** pedidos que ainda exigem pagamento oferecem o checkout nativo. Cancelamento exige confirmação e somente é permitido nos estados autorizados pelo WooCommerce; pedidos pagos e pedidos de outra conta são bloqueados.
+- **Dados pessoais:** edição de nome, sobrenome, nome de exibição e e-mail. Alterar e-mail ou senha exige a senha atual. A nova senha requer confirmação e de 12 a 128 caracteres. A autenticação continua sendo do WordPress.
+- **Faturamento:** edição dos campos padrão do cliente do WooCommerce, com validação de país, estado, código postal, telefone e e-mail. Alterar esse cadastro não reescreve pedidos anteriores nem muda o e-mail de acesso.
+- **Acesso e cadastro:** formulários próprios na interface Nortume, processados pelos mecanismos de login e registro do WooCommerce. Os convites mantêm seu token e vínculo com o e-mail. Recuperação de senha usa o fluxo do WordPress.
+
+A página Nortume é selecionada automaticamente como Minha conta nas configurações do WooCommerce. O conteúdo da página anterior não é alterado. Os endereços anteriores e endpoints de pedidos, detalhe, dados e testes encaminham às seções correspondentes. Links de recuperação de senha enviados anteriormente continuam encaminhando ao fluxo de redefinição. Ao desativar o plugin, a seleção anterior de Minha conta é restaurada quando ainda aponta para a Nortume.
+
+As rotas privadas de pedidos e perfil exigem sessão e nonce. A consulta de pedidos verifica o ID do comprador, sem liberar compras apenas por coincidência de e-mail. Não há edição de permissões, perfil de acesso ou metadados arbitrários pelo formulário da conta.
 
 ## Módulos incluídos
 
